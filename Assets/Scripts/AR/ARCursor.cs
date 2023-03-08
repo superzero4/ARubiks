@@ -5,18 +5,46 @@ using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using Sirenix.OdinInspector;
+using System;
+
 public class ARCursor : MonoBehaviour
 {
     [SerializeField]
     private ARRaycastManager _raycast;
+    [SerializeField]
+    private Camera _camera;
     [SerializeField, EnumToggleButtons]
     private TrackableType _tracked;
+    private void Awake()
+    {
+        if (_raycast == null)
+            _raycast = GameObject.FindObjectOfType<ARRaycastManager>();
+        if (_camera == null)
+            _camera = Camera.main;
+    }
     private void Update()
     {
         var hits = new List<ARRaycastHit>();
-        if (Input.touchCount > 0)
-            if (_raycast.Raycast(Camera.main.ViewportToScreenPoint(ViewPortpoint()), hits, TrackableType.Planes))
-                hits.ForEach((hit) => hit.trackable.gameObject.GetComponentInChildren<Renderer>().material.color = Color.red);
+        if (_raycast.Raycast(_camera.ViewportToScreenPoint(ViewPortpoint()), hits, _tracked))
+        {
+            foreach (var hit in hits)
+            {
+                Material mat;
+                try
+                {
+                    mat = hit.trackable?.gameObject?.GetComponentInChildren<Renderer>()?.material;
+                }
+                catch (Exception e)
+                {
+                    mat = null;
+                }
+                if (mat != null)
+                    mat.color = Color.red;
+                else
+                    Debug.LogWarning("mat is null");
+            }
+        }
+
     }
 
     private static Vector3 ViewPortpoint()

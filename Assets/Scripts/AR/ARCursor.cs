@@ -27,6 +27,9 @@ public class ARCursor : MonoBehaviour
         var hits = new List<ARRaycastHit>();
         if (_raycast.Raycast(_camera.ViewportToScreenPoint(ViewPortpoint()), hits, _tracked))
         {
+            Pose firstPose = hits[0].pose;
+            transform.position = firstPose.position;
+            transform.rotation = firstPose.rotation;
             foreach (var hit in hits)
             {
                 Material mat;

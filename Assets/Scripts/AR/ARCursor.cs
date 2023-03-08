@@ -21,7 +21,7 @@ public class ARCursor : MonoBehaviour
 
     private static Vector3 ViewPortpoint()
     {
-        return Input.GetTouch(0).position;
+        //return Input.GetTouch(0).position;
         return new Vector3(.5f, .5f, 0);
     }
 }

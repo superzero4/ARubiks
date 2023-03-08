@@ -5,12 +5,15 @@ using UnityEngine;
 public class Square : MonoBehaviour
 {
     [SerializeField] Transform pieceTransform;
+    [SerializeField] Face face;
+    [SerializeField] int index;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<Piece>())
         {
             other.gameObject.GetComponent<Piece>().SetOnFace(pieceTransform);
+            face.UpdateFaceColor(index, other.gameObject.GetComponent<MeshRenderer>().material.color);
         }
     }
 }

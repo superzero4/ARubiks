@@ -34,4 +34,9 @@ public class Piece : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public bool GetIsFalling()
+    {
+        return isFalling;
+    }
 }

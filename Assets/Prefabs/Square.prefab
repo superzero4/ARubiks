@@ -43,9 +43,9 @@ GameObject:
   - component: {fileID: 5253176633119561868}
   - component: {fileID: 5253176633119561869}
   - component: {fileID: 5253176633119561866}
-  - component: {fileID: 3035506221866157381}
   - component: {fileID: 6620037294152809804}
   - component: {fileID: 2803979412528131699}
+  - component: {fileID: 5985002863908267394}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -132,19 +132,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &3035506221866157381
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5253176633119561864}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 2, z: 0}
 --- !u!54 &6620037294152809804
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -174,3 +161,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pieceTransform: {fileID: 6651784160119142436}
+  face: {fileID: 0}
+  index: 0
+--- !u!135 &5985002863908267394
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5253176633119561864}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.4
+  m_Center: {x: 0, y: 2.5, z: 0}

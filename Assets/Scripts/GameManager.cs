@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
             pieceSpawners[r].SpawnPiece();
             yield return new WaitForSeconds(spawnTime);
             spawnTime -= Random.Range(Time.deltaTime, .2f);
-            spawnTime = Mathf.Clamp(spawnTime, .5f, 10);
+            spawnTime = Mathf.Clamp(spawnTime, 1.5f, 10);
         }
     }
 }

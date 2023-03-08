@@ -7,7 +7,7 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/ARFirstSteps.unity
-    guid: ee27c5004d52f31479901f16cf121709
+    guid: e4d59dccf44834042b80ec02f56482e1
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: 744b813df90924c169af73489b8325de,
       type: 2}

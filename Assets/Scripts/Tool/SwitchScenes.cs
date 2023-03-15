@@ -7,11 +7,11 @@ using System.Linq;
 public class SwitchScenes : MonoBehaviour
 {
     [SerializeField]
-    private bool _enables;
+    private bool _enabled;
     // Start is called before the first frame update
     void Awake()
     {
-        if (_enables)
+        if (_enabled)
             DontDestroyOnLoad(gameObject);
         else
             Destroy(this);

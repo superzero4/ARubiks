@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,26 +10,43 @@ public class ARTrackableImagesSubscriber : MonoBehaviour
     private ARTrackedImageManager _tracker;
     [SerializeField]
     private GameObject _prefabToSpawnOnTracked;
+    private Dictionary<ARTrackedImage, int> _reindexedList;
     private void OnEnable()
     {
+        _reindexedList = new Dictionary<ARTrackedImage, int>();
         _tracker.trackedImagesChanged += OnImageChanged;
     }
     private void OnImageChanged(ARTrackedImagesChangedEventArgs args)
     {
         foreach (var im in args.added)
         {
-            Instantiate(_prefabToSpawnOnTracked, im.transform);
-            _prefabToSpawnOnTracked.transform.localScale = .08f * Vector3.one;
+            var instantiated = Instantiate(_prefabToSpawnOnTracked, im.transform).transform;
+            instantiated.localScale = .08f * Vector3.one;
+            int customIndex = _reindexedList.Count;
+            _reindexedList.Add(im, customIndex);
+            instantiated.GetChild(instantiated.childCount - 1).GetComponent<Renderer>().material.color = GetColorBasedOnIndex(customIndex);
         }
         LogState(args.added, "Begin tracking : ");
+        foreach (var added in args.added) { }
         LogState(args.updated, "Keep tracking : ");
         LogState(args.removed, "Loose/Stop tracking : ");
     }
 
-    private static void LogState(List<ARTrackedImage> list, string prefix = "")
+    private Color GetColorBasedOnIndex(int customIndex)
+    {
+        switch (customIndex)
+        {
+            case 0: return Color.red;
+            case 1: return Color.green;
+            case 2: return Color.yellow;
+        }
+        return UnityEngine.Random.ColorHSV();
+    }
+
+    private void LogState(List<ARTrackedImage> list, string prefix = "")
     {
         foreach (var image in list)
-            Debug.Log(prefix + " " + image.trackableId + " : " + image.transform.position);
+            Debug.Log(prefix + " " + image.referenceImage.name + " : " + image.transform.position + " " + image.trackingState + " " + image.transform.GetChild(0)?.name + " " + _reindexedList[image] + ",," + image.name + ",,," /*+ string.Join('\\', image.GetComponents<Component>())*/);
     }
 
     // Start is called before the first frame update

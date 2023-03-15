@@ -49,4 +49,13 @@ public class GameManager : MonoBehaviour
             spawnTime = Mathf.Clamp(spawnTime, 1.5f, 10);
         }
     }
+
+    public void CompleteFace(float completionPercent, int faceId)
+    {
+        completionPercents.Add(completionPercent);
+        foreach (PieceSpawner pieceSpawner in pieceSpawners)
+        {
+            pieceSpawner.RedistributeProbability(faceId);
+        }
+    }
 }

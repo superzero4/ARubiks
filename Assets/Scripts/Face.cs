@@ -5,6 +5,7 @@ using UnityEngine;
 public class Face : MonoBehaviour
 {
     [SerializeField] Color faceColor;
+    [SerializeField] int faceId;
     public bool isFull;
     [SerializeField] float completionPercent;
 
@@ -49,7 +50,7 @@ public class Face : MonoBehaviour
         }
 
         completionPercent = Mathf.Floor(i / placedColors.Length * 100);
-        FindObjectOfType<GameManager>().completionPercents.Add(completionPercent);
+        FindObjectOfType<GameManager>().CompleteFace(completionPercent, faceId);
     }
 
     // Start is called before the first frame update

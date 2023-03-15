@@ -18,32 +18,12 @@ MonoBehaviour:
     m_Storage: []
   m_Images:
   - m_SerializedGuid:
-      m_GuidLow: 5074276900209448933
-      m_GuidHigh: 9756825860984329868
+      m_GuidLow: 5286954130084448774
+      m_GuidHigh: 6868112621706443452
     m_SerializedTextureGuid:
-      m_GuidLow: 753454884449402314
-      m_GuidHigh: 5807704518723557930
-    m_Size: {x: 0.06, y: 0.09839506}
-    m_SpecifySize: 0
-    m_Name: Red
-    m_Texture: {fileID: 0}
-  - m_SerializedGuid:
-      m_GuidLow: 4863725457029904829
-      m_GuidHigh: 3351153566171176118
-    m_SerializedTextureGuid:
-      m_GuidLow: 5545293489958606537
-      m_GuidHigh: 14937275657793221320
-    m_Size: {x: 0, y: 0}
-    m_SpecifySize: 0
-    m_Name: Green
-    m_Texture: {fileID: 0}
-  - m_SerializedGuid:
-      m_GuidLow: 5272694378273957253
-      m_GuidHigh: 11904497291680497282
-    m_SerializedTextureGuid:
-      m_GuidLow: 12786909940547366064
-      m_GuidHigh: 6764735186003055930
-    m_Size: {x: 0, y: 0}
-    m_SpecifySize: 0
-    m_Name: Yellow
+      m_GuidLow: 6000131143262945509
+      m_GuidHigh: 18196659333496494569
+    m_Size: {x: 3.2, y: 3.5799768}
+    m_SpecifySize: 1
+    m_Name: UniCropW
     m_Texture: {fileID: 0}

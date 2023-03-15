@@ -21,19 +21,29 @@ MonoBehaviour:
       m_GuidLow: 5074276900209448933
       m_GuidHigh: 9756825860984329868
     m_SerializedTextureGuid:
-      m_GuidLow: 1253237675594279590
-      m_GuidHigh: 15279803783113674569
+      m_GuidLow: 753454884449402314
+      m_GuidHigh: 5807704518723557930
     m_Size: {x: 0.06, y: 0.09839506}
     m_SpecifySize: 0
-    m_Name: Fornite
+    m_Name: Red
     m_Texture: {fileID: 0}
   - m_SerializedGuid:
       m_GuidLow: 4863725457029904829
       m_GuidHigh: 3351153566171176118
     m_SerializedTextureGuid:
-      m_GuidLow: 5108411853174815150
-      m_GuidHigh: 13334274052493616042
+      m_GuidLow: 5545293489958606537
+      m_GuidHigh: 14937275657793221320
     m_Size: {x: 0, y: 0}
     m_SpecifySize: 0
-    m_Name: RedCenter
+    m_Name: Green
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5272694378273957253
+      m_GuidHigh: 11904497291680497282
+    m_SerializedTextureGuid:
+      m_GuidLow: 12786909940547366064
+      m_GuidHigh: 6764735186003055930
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: Yellow
     m_Texture: {fileID: 0}

@@ -862,3 +862,5 @@ MonoBehaviour:
   _tracker: {fileID: 1659859602}
   _prefabToSpawnOnTracked: {fileID: 7720016943325541442, guid: 7fb021f86e144b74897980226d49d1ae,
     type: 3}
+  _scales:
+  - 3

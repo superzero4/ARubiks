@@ -3,10 +3,13 @@
 public class MaterialPicker : MonoBehaviour
 {
     [SerializeField] Material[] pieceMaterialColor;
+    /// <summary>
+    /// Last value is probability of black to be spawned
+    /// </summary>
     float[] colorProbability = { .16f, .16f, .16f, .16f, .16f, .16f, .04f };
     public Material RandomMat => pieceMaterialColor[PickOne()];
     //Choose randomly a color for a piece using their probability
-    public int PickOne()
+    private int PickOne()
     {
         int index = 0;
         float r = UnityEngine.Random.value;
@@ -17,10 +20,11 @@ public class MaterialPicker : MonoBehaviour
             index++;
         }
         index--;
-
+/*
+        //If we want to always select a "non black" color
         if (index == colorProbability.Length - 1)
             index = Random.Range(0, pieceMaterialColor.Length);
-
+*/
         return index;
     }
 

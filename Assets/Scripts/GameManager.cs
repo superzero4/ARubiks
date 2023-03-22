@@ -5,7 +5,7 @@ using Sirenix.OdinInspector;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField, AssetsOnly] Piece _piecePrefab;
+    [SerializeField, AssetsOnly] SubPiece _piecePrefab;
     [SerializeField] private MaterialPicker _material;
     [SerializeField] PieceSpawner[] pieceSpawners;
     [SerializeField] float spawnTime = 5f;
@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
             StopAllCoroutines();
 
             //Destroy all piece still falling
-            Piece[] leftPieces = FindObjectsOfType<Piece>();
+            var leftPieces = FindObjectsOfType<Piece>();
             foreach (Piece piece in leftPieces)
             {
                 if (piece.GetIsFalling())

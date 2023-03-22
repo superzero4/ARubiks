@@ -18,35 +18,38 @@ public class PieceSpawner : MonoBehaviour
     {
         var go = SpawnPiece(p, PickOne(colorProbability));
     }*/
-    public Piece SpawnPiece(Piece p, Material mat)
+    public Piece SpawnPiece(SubPiece p, Material mat)
     {
         var spawned = SpawnPiece(p, mat, Vector3.zero);
         StartCoroutine(ActivateLightBeam(spawned));
         return spawned;
     }
     //Spawn the piece and set her color
-    public Piece SpawnPiece(Piece p, Material mat, Vector3 offset, Transform parent = null)
+    public Piece SpawnPiece(SubPiece p, Material mat, Vector3 offset, Transform parent = null)
     {
-        var go = Instantiate(p, transform.position + offset, Quaternion.identity, parent);
-        go.GetComponent<MeshRenderer>().material = mat;
-        return go;
+        if(parent==null || parent.TryGetComponent<Piece>(out Piece piece))
+            piece = parent.gameObject.AddComponent<Piece>();
+        var subPiece = Instantiate(p, transform.position + offset, Quaternion.identity, parent);
+        subPiece.GetComponent<MeshRenderer>().material = mat;
+        subPiece.Parent(piece);
+        return piece;
     }
-    public Piece SpawnPiece(Piece prefab, Material mat, NMinos.NMino nmino, Quaternion rotation)
+    public Piece SpawnPiece(SubPiece prefab, Material mat, NMinos.NMino nmino, Quaternion rotation)
     {
         var parent = new GameObject("piece").transform;
+        var piece = parent.gameObject.AddComponent<Piece>();
         parent.position = transform.position;
         parent.rotation = rotation;
-        Piece subPiece = null;
         foreach (var ind in nmino)
         {
             if (nmino[ind])
             {
-                subPiece = SpawnPiece(prefab, mat, new Vector3(ind.Item1 - 1, 0, ind.Item2 - 1), parent.transform);
+                var subPiece = SpawnPiece(prefab, mat, new Vector3(ind.Item1 - 1, 0, ind.Item2 - 1), parent.transform);
                 subPiece.name = "subPiece" + ind;
             }
         }
-        StartCoroutine(ActivateLightBeam(subPiece));
-        return subPiece;
+        StartCoroutine(ActivateLightBeam(piece));
+        return piece;
     }
 
     //Activate light beam effect during the falling of the piece

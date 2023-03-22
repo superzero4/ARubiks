@@ -11,9 +11,10 @@ public class Square : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //Detect a piece
-        if (other.gameObject.GetComponent<Piece>())
+        if (other.gameObject.TryGetComponent<Piece>(out Piece piece))
         {
-            other.gameObject.GetComponent<Piece>().SetOnFace(pieceTransform);
+            Debug.LogWarning("To do, ensure that connected cubes also update their corresponding squares");
+            piece.SetOnFace(pieceTransform);
             face.UpdateFaceColor(index, other.gameObject.GetComponent<MeshRenderer>().material.color);
         }
     }

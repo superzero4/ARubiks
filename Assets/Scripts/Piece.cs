@@ -15,10 +15,9 @@ public class Piece : MonoBehaviour
         //Move the piece
         transform.position = transform.position - new Vector3(0, 1, 0) * speed * Time.deltaTime;
 
-        if(transform.position.y <= -5)
+        if (transform.position.y <= -5)
             Destroy(gameObject);
     }
-
     //Attach the piece to the square it fallen on
     public void SetOnFace(Transform newPos)
     {
@@ -28,16 +27,7 @@ public class Piece : MonoBehaviour
         gameObject.transform.localEulerAngles = Vector3.zero;
         gameObject.transform.localScale = new Vector3(1.34f, 6.67f, 1.34f);
     }
-
-    //Destroy piece if colliding with an already placed piece
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.GetComponent<Piece>() && isFalling)
-        {
-            Destroy(gameObject);
-        }
-    }
-
+    
     //Return isFalling
     public bool GetIsFalling()
     {

@@ -1060,7 +1060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82bac1e32f6ea284f99169ca1d011e43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _piecePrefab: {fileID: 278513576230717008, guid: 036bd617f7e4ef74b8965d27280d3e27,
+  _piecePrefab: {fileID: 8125646903175949133, guid: 036bd617f7e4ef74b8965d27280d3e27,
     type: 3}
   _material: {fileID: 954186939}
   pieceSpawners:
@@ -1074,6 +1074,7 @@ MonoBehaviour:
   - {fileID: 463595816}
   - {fileID: 358170965}
   spawnTime: 1
+  _speed: 3
   completionPercents: []
 --- !u!4 &954186938
 Transform:

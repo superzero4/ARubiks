@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private MaterialPicker _material;
     [SerializeField] PieceSpawner[] pieceSpawners;
     [SerializeField] float spawnTime = 5f;
+    [SerializeField, Range(1, 7f)] float _speed = 3f;
     public List<float> completionPercents = new List<float>();
 
     void Start()
@@ -50,22 +51,37 @@ public class GameManager : MonoBehaviour
         {
             //LegacySpawn();
             var piece = NMinos.NMino.NMinoFactory.RandomNMino();
-            SpawnPiece(piece, pieceSpawners[4]);
+            var spawned = SpawnPiece(piece,
+                //In unity editor we alwasy spawn in the center cause we can't really move the cube, but not in build/real life so we can offset the pieces
+#if UNITY_EDITOR
+                pieceSpawners[4]
+#endif
+                );
+            spawned.Speed = _speed;
             yield return new WaitForSeconds(spawnTime);
             spawnTime -= Random.Range(Time.deltaTime, .2f);
             spawnTime = Mathf.Clamp(spawnTime, 1.5f, 10);
         }
     }
-
-    private void LegacySpawn()
+    private float CalculateFallSpeed()
     {
-        int r = Random.Range(0, pieceSpawners.Length);
-        pieceSpawners[r].SpawnPiece(_piecePrefab, _material.RandomMat);
+        return _speed * 1f;
+        //Could scale on time elapsed;
+    }
+    private Piece LegacySpawn()
+    {
+        return RandomSpawner().SpawnPiece(_piecePrefab, _material.RandomMat);
     }
 
-    public void SpawnPiece(NMinos.NMino piece, PieceSpawner s)
+    private PieceSpawner RandomSpawner()
     {
-        s.SpawnPiece(_piecePrefab, _material.RandomMat, piece, Quaternion.identity);
+        return pieceSpawners[Random.Range(0, pieceSpawners.Length)];
+    }
+
+    public Piece SpawnPiece(NMinos.NMino piece, PieceSpawner spawner = null)
+    {
+        spawner ??= RandomSpawner();
+        return spawner.SpawnPiece(_piecePrefab, _material.RandomMat, piece, Quaternion.identity);
     }
 
     //Get the percent completion of a complete face

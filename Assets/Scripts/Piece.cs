@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Piece : MonoBehaviour
 {
-    [SerializeField] float speed = 5;
+    float speed = 3;
     bool isFalling = true;
+
+    public float Speed { get => speed; set => speed = value; }
 
     private void Update()
     {
@@ -27,7 +29,7 @@ public class Piece : MonoBehaviour
         gameObject.transform.localEulerAngles = Vector3.zero;
         gameObject.transform.localScale = new Vector3(1.34f, 6.67f, 1.34f);
     }
-    
+
     //Return isFalling
     public bool GetIsFalling()
     {

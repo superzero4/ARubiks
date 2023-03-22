@@ -1112,13 +1112,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pieceMaterialColor:
-  - {fileID: 2100000, guid: 3c2c6a6e99c7b384eaf6680cd3ba2951, type: 2}
-  - {fileID: 2100000, guid: dc93fe30335158549ab84ae5bc66722c, type: 2}
-  - {fileID: 2100000, guid: a7cbc764564686b4481e553ca83b8cf8, type: 2}
   - {fileID: 2100000, guid: cafdf123da31d3643abbb2018865d0ca, type: 2}
+  - {fileID: 2100000, guid: a9908a3cb2a878a41b1d906dafdd5f08, type: 2}
+  - {fileID: 2100000, guid: a7cbc764564686b4481e553ca83b8cf8, type: 2}
+  - {fileID: 2100000, guid: dc93fe30335158549ab84ae5bc66722c, type: 2}
+  - {fileID: 2100000, guid: 3c2c6a6e99c7b384eaf6680cd3ba2951, type: 2}
   - {fileID: 2100000, guid: 894261a2584998843987745a8ea1b502, type: 2}
   - {fileID: 2100000, guid: bf83f2eac61d7a242bbd8998be263e14, type: 2}
-  - {fileID: 2100000, guid: a9908a3cb2a878a41b1d906dafdd5f08, type: 2}
 --- !u!1001 &999925257
 PrefabInstance:
   m_ObjectHideFlags: 0

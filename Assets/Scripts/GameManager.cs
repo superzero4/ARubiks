@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField, AssetsOnly] Piece _piecePrefab;
+    [SerializeField] private MaterialPicker _material;
     [SerializeField] PieceSpawner[] pieceSpawners;
     [SerializeField] float spawnTime = 5f;
     public List<float> completionPercents = new List<float>();
@@ -17,7 +20,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //Check cube completion
-        if(completionPercents.Count >= 6)
+        if (completionPercents.Count >= 6)
         {
             StopAllCoroutines();
 
@@ -45,21 +48,30 @@ public class GameManager : MonoBehaviour
     {
         while (true)
         {
-            int r = Random.Range(0, pieceSpawners.Length);
-            pieceSpawners[r].SpawnPiece();
+            //LegacySpawn();
+            var piece = NMinos.NMino.NMinoFactory.RandomNMino();
+            SpawnPiece(piece, pieceSpawners[4]);
             yield return new WaitForSeconds(spawnTime);
             spawnTime -= Random.Range(Time.deltaTime, .2f);
             spawnTime = Mathf.Clamp(spawnTime, 1.5f, 10);
         }
     }
 
+    private void LegacySpawn()
+    {
+        int r = Random.Range(0, pieceSpawners.Length);
+        pieceSpawners[r].SpawnPiece(_piecePrefab, _material.RandomMat);
+    }
+
+    public void SpawnPiece(NMinos.NMino piece, PieceSpawner s)
+    {
+        s.SpawnPiece(_piecePrefab, _material.RandomMat, piece, Quaternion.identity);
+    }
+
     //Get the percent completion of a complete face
     public void CompleteFace(float completionPercent, int faceId)
     {
         completionPercents.Add(completionPercent);
-        foreach (PieceSpawner pieceSpawner in pieceSpawners)
-        {
-            pieceSpawner.RedistributeProbability(faceId);
-        }
+        _material.RedistributeProbability(faceId);
     }
 }

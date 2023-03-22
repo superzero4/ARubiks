@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class PieceSpawner : MonoBehaviour
 {
-    [SerializeField] GameObject piecePrefab;
-    [SerializeField] Material[] pieceMaterialColor;
-    float[] colorProbability = { .16f, .16f, .16f, .16f, .16f, .16f, .04f };
     GameObject lightBeam;
 
     int isActive = 0;
@@ -16,13 +13,40 @@ public class PieceSpawner : MonoBehaviour
         lightBeam = transform.GetChild(0).gameObject;
     }
 
-    //Spawn the piece and set her color
-    public void SpawnPiece()
+    /*//Spawn the piece and set her color
+    public void SpawnPiece(Piece p)
     {
-        GameObject go = Instantiate(piecePrefab, transform.position, Quaternion.identity);
-        int r = PickOne(colorProbability);
-        go.GetComponent<MeshRenderer>().material = pieceMaterialColor[r];
-        StartCoroutine(ActivateLightBeam(go.GetComponent<Piece>()));
+        var go = SpawnPiece(p, PickOne(colorProbability));
+    }*/
+    public Piece SpawnPiece(Piece p, Material mat)
+    {
+        var spawned = SpawnPiece(p, mat, Vector3.zero);
+        StartCoroutine(ActivateLightBeam(spawned));
+        return spawned;
+    }
+    //Spawn the piece and set her color
+    public Piece SpawnPiece(Piece p, Material mat, Vector3 offset, Transform parent = null)
+    {
+        var go = Instantiate(p, transform.position + offset, Quaternion.identity, parent);
+        go.GetComponent<MeshRenderer>().material = mat;
+        return go;
+    }
+    public Piece SpawnPiece(Piece prefab, Material mat, NMinos.NMino nmino, Quaternion rotation)
+    {
+        var parent = new GameObject("piece").transform;
+        parent.position = transform.position;
+        parent.rotation = rotation;
+        Piece subPiece = null;
+        foreach (var ind in nmino)
+        {
+            if (nmino[ind])
+            {
+                subPiece = SpawnPiece(prefab, mat, new Vector3(ind.Item1 - 1, 0, ind.Item2 - 1), parent.transform);
+                subPiece.name = "subPiece" + ind;
+            }
+        }
+        StartCoroutine(ActivateLightBeam(subPiece));
+        return subPiece;
     }
 
     //Activate light beam effect during the falling of the piece
@@ -32,67 +56,14 @@ public class PieceSpawner : MonoBehaviour
         lightBeam.SetActive(true);
         isActive++;
 
-        while(pieceObject != null && piece.GetIsFalling())
+        while (pieceObject != null && piece.GetIsFalling())
         {
             yield return new WaitForSeconds(Time.deltaTime);
         }
 
         isActive--;
 
-        if(isActive == 0)
+        if (isActive == 0)
             lightBeam.SetActive(false);
-    }
-
-    //Choose randomly a color for a piece using their probability
-    public int PickOne(float[] prob)
-    {
-        int index = 0;
-        float r = UnityEngine.Random.value;
-
-        while (r > 0)
-        {
-            r -= prob[index];
-            index++;
-        }
-        index--;
-
-        if(index == prob.Length-1)
-            index = Random.Range(0, pieceMaterialColor.Length);
-
-        return index;
-    }
-
-    //Redistribute probability after a face is completed to avoid getting to much of that side color appearing
-    public void RedistributeProbability(int color)
-    {
-        float d = colorProbability[color] - .06f;
-        colorProbability[color] = .06f;
-        int p = 0;
-        float redistribValue = 0;
-
-        foreach (float prob in colorProbability)
-        {
-            if (prob > .06f)
-                p++;
-        }
-
-        Debug.Log("division : " + d + "/" + p);
-
-        if (p > 0)
-            redistribValue = d / p;
-
-        Debug.Log("resultat : " + redistribValue);
-
-        float debug = 0;
-
-        for (int i = 0; i < colorProbability.Length; i++)
-        {
-            if (colorProbability[i] > .06f)
-                colorProbability[i] += redistribValue;
-
-            Debug.Log(colorProbability[i]);
-            debug += colorProbability[i];
-        }
-        Debug.Log(debug);
     }
 }

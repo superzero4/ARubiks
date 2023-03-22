@@ -10,6 +10,7 @@ public class Square : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //Detect a piece
         if (other.gameObject.GetComponent<Piece>())
         {
             other.gameObject.GetComponent<Piece>().SetOnFace(pieceTransform);

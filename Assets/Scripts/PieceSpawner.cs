@@ -16,6 +16,7 @@ public class PieceSpawner : MonoBehaviour
         lightBeam = transform.GetChild(0).gameObject;
     }
 
+    //Spawn the piece and set her color
     public void SpawnPiece()
     {
         GameObject go = Instantiate(piecePrefab, transform.position, Quaternion.identity);
@@ -24,6 +25,7 @@ public class PieceSpawner : MonoBehaviour
         StartCoroutine(ActivateLightBeam(go.GetComponent<Piece>()));
     }
 
+    //Activate light beam effect during the falling of the piece
     IEnumerator ActivateLightBeam(Piece piece)
     {
         GameObject pieceObject = piece.gameObject;
@@ -41,6 +43,7 @@ public class PieceSpawner : MonoBehaviour
             lightBeam.SetActive(false);
     }
 
+    //Choose randomly a color for a piece using their probability
     public int PickOne(float[] prob)
     {
         int index = 0;
@@ -59,6 +62,7 @@ public class PieceSpawner : MonoBehaviour
         return index;
     }
 
+    //Redistribute probability after a face is completed to avoid getting to much of that side color appearing
     public void RedistributeProbability(int color)
     {
         float d = colorProbability[color] - .06f;

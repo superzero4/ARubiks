@@ -16,6 +16,7 @@ public class Face : MonoBehaviour
         Color.black, Color.black, Color.black
     };
 
+    //Register color of a piece that falled on a square of the face
     public void UpdateFaceColor(int squareIndex, Color pieceColor)
     {
         if (isFull)
@@ -25,6 +26,7 @@ public class Face : MonoBehaviour
         isFull = IsFaceFull();
     }
 
+    //Check if all the square of the face has been registred / if the face is completed
     public bool IsFaceFull()
     {
         foreach (Color color in placedColors)
@@ -38,6 +40,7 @@ public class Face : MonoBehaviour
         return true;
     }
 
+    //Calculate completion percentage of the face
     void CalculateCompletion()
     {
         float i = 0;
@@ -51,17 +54,5 @@ public class Face : MonoBehaviour
 
         completionPercent = Mathf.Floor(i / placedColors.Length * 100);
         FindObjectOfType<GameManager>().CompleteFace(completionPercent, faceId);
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

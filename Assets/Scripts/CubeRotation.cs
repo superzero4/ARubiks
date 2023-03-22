@@ -7,6 +7,8 @@ public class CubeRotation : MonoBehaviour
     Vector3 mPrevPos = Vector3.zero;
     Vector3 mPosDelta = Vector3.zero;
 
+    //Temporary script to test cube rotation
+
     private void Update()
     {
         if (Input.GetMouseButton(0))

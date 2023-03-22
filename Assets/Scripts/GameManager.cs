@@ -8,19 +8,20 @@ public class GameManager : MonoBehaviour
     [SerializeField] float spawnTime = 5f;
     public List<float> completionPercents = new List<float>();
 
-    // Start is called before the first frame update
     void Start()
     {
+        //Start piece spawn
         StartCoroutine(RandomSpawnPiece());
     }
 
-    // Update is called once per frame
     void Update()
     {
+        //Check cube completion
         if(completionPercents.Count >= 6)
         {
             StopAllCoroutines();
 
+            //Destroy all piece still falling
             Piece[] leftPieces = FindObjectsOfType<Piece>();
             foreach (Piece piece in leftPieces)
             {
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
                     Destroy(piece.gameObject);
             }
 
+            //Calculate total rubiks completion
             float moy = 0;
             foreach (float percent in completionPercents)
             {
@@ -38,6 +40,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //Spawn piece on a random spawner
     IEnumerator RandomSpawnPiece()
     {
         while (true)
@@ -50,6 +53,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //Get the percent completion of a complete face
     public void CompleteFace(float completionPercent, int faceId)
     {
         completionPercents.Add(completionPercent);

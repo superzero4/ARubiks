@@ -37,7 +37,7 @@ public class ARTrackableImagesSubscriber : MonoBehaviour
                 foreach (var plane in instantiated.GetComponentsInChildren<PlanesController>())
                 {
                     //You can also use scale for specific coloration basedOnIndex
-                    plane.SetColor(GetColorBasedOnIndex(Index));
+                    plane.SetColor(GetColorBasedOnIndex(customIndex));
                 }
             }
         }

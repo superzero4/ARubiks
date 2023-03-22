@@ -407,15 +407,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13c6a44a4ca82f342af471c8629464d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  piecePrefab: {fileID: 4103343031458652500, guid: 036bd617f7e4ef74b8965d27280d3e27,
-    type: 3}
-  pieceMaterialColor:
-  - {fileID: 2100000, guid: cafdf123da31d3643abbb2018865d0ca, type: 2}
-  - {fileID: 2100000, guid: a9908a3cb2a878a41b1d906dafdd5f08, type: 2}
-  - {fileID: 2100000, guid: a7cbc764564686b4481e553ca83b8cf8, type: 2}
-  - {fileID: 2100000, guid: dc93fe30335158549ab84ae5bc66722c, type: 2}
-  - {fileID: 2100000, guid: 3c2c6a6e99c7b384eaf6680cd3ba2951, type: 2}
-  - {fileID: 2100000, guid: 894261a2584998843987745a8ea1b502, type: 2}
 --- !u!1001 &196399960
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -564,15 +555,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13c6a44a4ca82f342af471c8629464d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  piecePrefab: {fileID: 4103343031458652500, guid: 036bd617f7e4ef74b8965d27280d3e27,
-    type: 3}
-  pieceMaterialColor:
-  - {fileID: 2100000, guid: cafdf123da31d3643abbb2018865d0ca, type: 2}
-  - {fileID: 2100000, guid: a9908a3cb2a878a41b1d906dafdd5f08, type: 2}
-  - {fileID: 2100000, guid: a7cbc764564686b4481e553ca83b8cf8, type: 2}
-  - {fileID: 2100000, guid: dc93fe30335158549ab84ae5bc66722c, type: 2}
-  - {fileID: 2100000, guid: 3c2c6a6e99c7b384eaf6680cd3ba2951, type: 2}
-  - {fileID: 2100000, guid: 894261a2584998843987745a8ea1b502, type: 2}
 --- !u!1 &463595814
 GameObject:
   m_ObjectHideFlags: 0
@@ -618,15 +600,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13c6a44a4ca82f342af471c8629464d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  piecePrefab: {fileID: 4103343031458652500, guid: 036bd617f7e4ef74b8965d27280d3e27,
-    type: 3}
-  pieceMaterialColor:
-  - {fileID: 2100000, guid: cafdf123da31d3643abbb2018865d0ca, type: 2}
-  - {fileID: 2100000, guid: a9908a3cb2a878a41b1d906dafdd5f08, type: 2}
-  - {fileID: 2100000, guid: a7cbc764564686b4481e553ca83b8cf8, type: 2}
-  - {fileID: 2100000, guid: dc93fe30335158549ab84ae5bc66722c, type: 2}
-  - {fileID: 2100000, guid: 3c2c6a6e99c7b384eaf6680cd3ba2951, type: 2}
-  - {fileID: 2100000, guid: 894261a2584998843987745a8ea1b502, type: 2}
 --- !u!1001 &528156361
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1067,6 +1040,7 @@ GameObject:
   m_Component:
   - component: {fileID: 954186938}
   - component: {fileID: 954186937}
+  - component: {fileID: 954186939}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1086,6 +1060,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82bac1e32f6ea284f99169ca1d011e43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _piecePrefab: {fileID: 278513576230717008, guid: 036bd617f7e4ef74b8965d27280d3e27,
+    type: 3}
+  _material: {fileID: 954186939}
   pieceSpawners:
   - {fileID: 1281536277}
   - {fileID: 1301090428}
@@ -1096,7 +1073,7 @@ MonoBehaviour:
   - {fileID: 1704607800}
   - {fileID: 463595816}
   - {fileID: 358170965}
-  spawnTime: 6
+  spawnTime: 1
   completionPercents: []
 --- !u!4 &954186938
 Transform:
@@ -1122,6 +1099,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &954186939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954186936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a221528567ceff444852737b29499185, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pieceMaterialColor:
+  - {fileID: 2100000, guid: 3c2c6a6e99c7b384eaf6680cd3ba2951, type: 2}
+  - {fileID: 2100000, guid: dc93fe30335158549ab84ae5bc66722c, type: 2}
+  - {fileID: 2100000, guid: a7cbc764564686b4481e553ca83b8cf8, type: 2}
+  - {fileID: 2100000, guid: cafdf123da31d3643abbb2018865d0ca, type: 2}
+  - {fileID: 2100000, guid: 894261a2584998843987745a8ea1b502, type: 2}
+  - {fileID: 2100000, guid: bf83f2eac61d7a242bbd8998be263e14, type: 2}
+  - {fileID: 2100000, guid: a9908a3cb2a878a41b1d906dafdd5f08, type: 2}
 --- !u!1001 &999925257
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1309,15 +1306,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13c6a44a4ca82f342af471c8629464d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  piecePrefab: {fileID: 4103343031458652500, guid: 036bd617f7e4ef74b8965d27280d3e27,
-    type: 3}
-  pieceMaterialColor:
-  - {fileID: 2100000, guid: cafdf123da31d3643abbb2018865d0ca, type: 2}
-  - {fileID: 2100000, guid: a9908a3cb2a878a41b1d906dafdd5f08, type: 2}
-  - {fileID: 2100000, guid: a7cbc764564686b4481e553ca83b8cf8, type: 2}
-  - {fileID: 2100000, guid: dc93fe30335158549ab84ae5bc66722c, type: 2}
-  - {fileID: 2100000, guid: 3c2c6a6e99c7b384eaf6680cd3ba2951, type: 2}
-  - {fileID: 2100000, guid: 894261a2584998843987745a8ea1b502, type: 2}
 --- !u!1 &1111946439
 GameObject:
   m_ObjectHideFlags: 0
@@ -1589,15 +1577,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13c6a44a4ca82f342af471c8629464d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  piecePrefab: {fileID: 4103343031458652500, guid: 036bd617f7e4ef74b8965d27280d3e27,
-    type: 3}
-  pieceMaterialColor:
-  - {fileID: 2100000, guid: cafdf123da31d3643abbb2018865d0ca, type: 2}
-  - {fileID: 2100000, guid: a9908a3cb2a878a41b1d906dafdd5f08, type: 2}
-  - {fileID: 2100000, guid: a7cbc764564686b4481e553ca83b8cf8, type: 2}
-  - {fileID: 2100000, guid: dc93fe30335158549ab84ae5bc66722c, type: 2}
-  - {fileID: 2100000, guid: 3c2c6a6e99c7b384eaf6680cd3ba2951, type: 2}
-  - {fileID: 2100000, guid: 894261a2584998843987745a8ea1b502, type: 2}
 --- !u!1 &1301090426
 GameObject:
   m_ObjectHideFlags: 0
@@ -1643,15 +1622,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13c6a44a4ca82f342af471c8629464d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  piecePrefab: {fileID: 4103343031458652500, guid: 036bd617f7e4ef74b8965d27280d3e27,
-    type: 3}
-  pieceMaterialColor:
-  - {fileID: 2100000, guid: cafdf123da31d3643abbb2018865d0ca, type: 2}
-  - {fileID: 2100000, guid: a9908a3cb2a878a41b1d906dafdd5f08, type: 2}
-  - {fileID: 2100000, guid: a7cbc764564686b4481e553ca83b8cf8, type: 2}
-  - {fileID: 2100000, guid: dc93fe30335158549ab84ae5bc66722c, type: 2}
-  - {fileID: 2100000, guid: 3c2c6a6e99c7b384eaf6680cd3ba2951, type: 2}
-  - {fileID: 2100000, guid: 894261a2584998843987745a8ea1b502, type: 2}
 --- !u!1001 &1375499095
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1834,15 +1804,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13c6a44a4ca82f342af471c8629464d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  piecePrefab: {fileID: 4103343031458652500, guid: 036bd617f7e4ef74b8965d27280d3e27,
-    type: 3}
-  pieceMaterialColor:
-  - {fileID: 2100000, guid: cafdf123da31d3643abbb2018865d0ca, type: 2}
-  - {fileID: 2100000, guid: a9908a3cb2a878a41b1d906dafdd5f08, type: 2}
-  - {fileID: 2100000, guid: a7cbc764564686b4481e553ca83b8cf8, type: 2}
-  - {fileID: 2100000, guid: dc93fe30335158549ab84ae5bc66722c, type: 2}
-  - {fileID: 2100000, guid: 3c2c6a6e99c7b384eaf6680cd3ba2951, type: 2}
-  - {fileID: 2100000, guid: 894261a2584998843987745a8ea1b502, type: 2}
 --- !u!1001 &1542447188
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2289,15 +2250,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13c6a44a4ca82f342af471c8629464d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  piecePrefab: {fileID: 4103343031458652500, guid: 036bd617f7e4ef74b8965d27280d3e27,
-    type: 3}
-  pieceMaterialColor:
-  - {fileID: 2100000, guid: cafdf123da31d3643abbb2018865d0ca, type: 2}
-  - {fileID: 2100000, guid: a9908a3cb2a878a41b1d906dafdd5f08, type: 2}
-  - {fileID: 2100000, guid: a7cbc764564686b4481e553ca83b8cf8, type: 2}
-  - {fileID: 2100000, guid: dc93fe30335158549ab84ae5bc66722c, type: 2}
-  - {fileID: 2100000, guid: 3c2c6a6e99c7b384eaf6680cd3ba2951, type: 2}
-  - {fileID: 2100000, guid: 894261a2584998843987745a8ea1b502, type: 2}
 --- !u!1001 &1711375514
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2446,15 +2398,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13c6a44a4ca82f342af471c8629464d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  piecePrefab: {fileID: 4103343031458652500, guid: 036bd617f7e4ef74b8965d27280d3e27,
-    type: 3}
-  pieceMaterialColor:
-  - {fileID: 2100000, guid: cafdf123da31d3643abbb2018865d0ca, type: 2}
-  - {fileID: 2100000, guid: a9908a3cb2a878a41b1d906dafdd5f08, type: 2}
-  - {fileID: 2100000, guid: a7cbc764564686b4481e553ca83b8cf8, type: 2}
-  - {fileID: 2100000, guid: dc93fe30335158549ab84ae5bc66722c, type: 2}
-  - {fileID: 2100000, guid: 3c2c6a6e99c7b384eaf6680cd3ba2951, type: 2}
-  - {fileID: 2100000, guid: 894261a2584998843987745a8ea1b502, type: 2}
 --- !u!1001 &2031432658
 PrefabInstance:
   m_ObjectHideFlags: 0

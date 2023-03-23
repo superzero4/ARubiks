@@ -21,22 +21,22 @@ public class PieceSpawner : MonoBehaviour
     public Piece SpawnPiece(SubPiece p, Material mat)
     {
         var spawned = SpawnPiece(p, mat, Vector3.zero);
-        StartCoroutine(ActivateLightBeam(spawned));
-        return spawned;
+        StartCoroutine(ActivateLightBeam(spawned.parent));
+        return spawned.parent;
     }
     //Spawn the piece and set her color
-    public Piece SpawnPiece(SubPiece p, Material mat, Vector3 offset, Transform parent = null)
+    public (Piece parent, SubPiece instantiated) SpawnPiece(SubPiece p, Material mat, Vector3 offset, Transform parent = null)
     {
-        if(parent==null || parent.TryGetComponent<Piece>(out Piece piece))
+        if (parent == null || !parent.TryGetComponent<Piece>(out Piece piece))
             piece = parent.gameObject.AddComponent<Piece>();
         var subPiece = Instantiate(p, transform.position + offset, Quaternion.identity, parent);
         subPiece.GetComponent<MeshRenderer>().material = mat;
         subPiece.Parent(piece);
-        return piece;
+        return (piece, subPiece);
     }
     public Piece SpawnPiece(SubPiece prefab, Material mat, NMinos.NMino nmino, Quaternion rotation)
     {
-        var parent = new GameObject("piece").transform;
+        var parent = new GameObject("Piece").transform;
         var piece = parent.gameObject.AddComponent<Piece>();
         parent.position = transform.position;
         parent.rotation = rotation;
@@ -44,8 +44,8 @@ public class PieceSpawner : MonoBehaviour
         {
             if (nmino[ind])
             {
-                var subPiece = SpawnPiece(prefab, mat, new Vector3(ind.Item1 - 1, 0, ind.Item2 - 1), parent.transform);
-                subPiece.name = "subPiece" + ind;
+                var couple = SpawnPiece(prefab, mat, new Vector3(ind.Item1 - 1, 0, ind.Item2 - 1), parent.transform);
+                couple.instantiated.name = "subPiece" + ind;
             }
         }
         StartCoroutine(ActivateLightBeam(piece));

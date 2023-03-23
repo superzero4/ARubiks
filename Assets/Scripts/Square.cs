@@ -11,7 +11,7 @@ public class Square : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //Detect a piece
-        if (other.attachedRigidbody.TryGetComponent<Piece>(out Piece piece))
+        if (other.attachedRigidbody.TryGetComponent<Piece>(out Piece piece) && piece.GetIsFalling())
         {
             Debug.LogWarning("To do, ensure that connected cubes also update their corresponding squares");
             piece.SetOnFace(pieceTransform);

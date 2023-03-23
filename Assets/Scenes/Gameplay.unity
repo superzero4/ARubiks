@@ -1073,7 +1073,7 @@ MonoBehaviour:
   - {fileID: 1704607800}
   - {fileID: 463595816}
   - {fileID: 358170965}
-  spawnTime: 1
+  spawnTime: 4
   _speed: 3
   completionPercents: []
 --- !u!4 &954186938

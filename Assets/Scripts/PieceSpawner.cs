@@ -38,6 +38,7 @@ public class PieceSpawner : MonoBehaviour
     {
         var parent = new GameObject("Piece").transform;
         var piece = parent.gameObject.AddComponent<Piece>();
+        piece.PreparePiece();
         parent.position = transform.position;
         parent.rotation = rotation;
         foreach (var ind in nmino)
@@ -51,6 +52,7 @@ public class PieceSpawner : MonoBehaviour
         StartCoroutine(ActivateLightBeam(piece));
         return piece;
     }
+
 
     //Activate light beam effect during the falling of the piece
     IEnumerator ActivateLightBeam(Piece piece)

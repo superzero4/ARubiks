@@ -8,7 +8,12 @@ public class Piece : MonoBehaviour
     bool isFalling = true;
 
     public float Speed { get => speed; set => speed = value; }
-
+    public void PreparePiece()
+    {
+        var rb = gameObject.AddComponent<Rigidbody>();
+        rb.isKinematic = true;
+        rb.useGravity = false;
+    }
     private void Update()
     {
         if (!isFalling)

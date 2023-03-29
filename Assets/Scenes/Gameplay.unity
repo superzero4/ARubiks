@@ -1083,7 +1083,7 @@ MonoBehaviour:
   - {fileID: 1704607800}
   - {fileID: 463595816}
   - {fileID: 358170965}
-  spawnTime: 1
+  spawnTime: 3
   _speed: 3
   completionPercents: []
 --- !u!4 &954186938
@@ -2206,7 +2206,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1651594800}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:

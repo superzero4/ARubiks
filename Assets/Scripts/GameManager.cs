@@ -50,7 +50,8 @@ public class GameManager : MonoBehaviour
         while (true)
         {
             //LegacySpawn();
-            var piece = NMinos.NMino.NMinoFactory.RandomNMino();
+            //var piece = NMinos.NMino.NMinoFactory.RandomNMino();
+            var piece = NMinos.NMino.NMinoFactory.L4Mino();
             var spawned = SpawnPiece(piece,
                 //In unity editor we alwasy spawn in the center cause we can't really move the cube, but not in build/real life so we can offset the pieces
 #if UNITY_EDITOR

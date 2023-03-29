@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3161506986505102321}
   - component: {fileID: 6416182821244599910}
+  - component: {fileID: 6208423525523199082}
   m_Layer: 0
   m_Name: Face
   m_TagString: Untagged
@@ -55,6 +56,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   faceColor: {r: 1, g: 1, b: 1, a: 0}
   faceId: 0
+  _area: {fileID: 6208423525523199082}
   isFull: 0
   completionPercent: 0
   placedColors:
@@ -67,6 +69,19 @@ MonoBehaviour:
   - {r: 0, g: 0, b: 0, a: 1}
   - {r: 0, g: 0, b: 0, a: 1}
   - {r: 0, g: 0, b: 0, a: 1}
+--- !u!65 &6208423525523199082
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3161506986505102322}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9, y: 0.3, z: 0.9}
+  m_Center: {x: 0, y: 0.15, z: 0}
 --- !u!1001 &423179943940873826
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -293,6 +293,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Face03
       objectReference: {fileID: 0}
+    - target: {fileID: 3161506986505102322, guid: 967430fdc2c1cb64fa3399578a63a46d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3161506987005651283, guid: 967430fdc2c1cb64fa3399578a63a46d,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -961,6 +966,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Face05
       objectReference: {fileID: 0}
+    - target: {fileID: 3161506986505102322, guid: 967430fdc2c1cb64fa3399578a63a46d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3161506987005651283, guid: 967430fdc2c1cb64fa3399578a63a46d,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1073,7 +1083,7 @@ MonoBehaviour:
   - {fileID: 1704607800}
   - {fileID: 463595816}
   - {fileID: 358170965}
-  spawnTime: 4
+  spawnTime: 1
   _speed: 3
   completionPercents: []
 --- !u!4 &954186938
@@ -1192,6 +1202,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Face02
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161506986505102322, guid: 967430fdc2c1cb64fa3399578a63a46d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3161506987005651283, guid: 967430fdc2c1cb64fa3399578a63a46d,
         type: 3}
@@ -1464,6 +1479,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Face04
       objectReference: {fileID: 0}
+    - target: {fileID: 3161506986505102322, guid: 967430fdc2c1cb64fa3399578a63a46d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3161506987005651283, guid: 967430fdc2c1cb64fa3399578a63a46d,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1695,6 +1715,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Face06
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161506986505102322, guid: 967430fdc2c1cb64fa3399578a63a46d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3161506987005651283, guid: 967430fdc2c1cb64fa3399578a63a46d,
         type: 3}
@@ -2118,7 +2143,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1651594800}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -2504,6 +2529,11 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1651594804}
     m_Modifications:
+    - target: {fileID: 2370756975796916398, guid: 967430fdc2c1cb64fa3399578a63a46d,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 3161506986505102321, guid: 967430fdc2c1cb64fa3399578a63a46d,
         type: 3}
       propertyPath: m_RootOrder
@@ -2563,6 +2593,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Face01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161506986505102322, guid: 967430fdc2c1cb64fa3399578a63a46d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6416182821244599910, guid: 967430fdc2c1cb64fa3399578a63a46d,
         type: 3}

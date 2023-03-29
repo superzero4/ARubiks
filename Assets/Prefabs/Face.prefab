@@ -39,7 +39,7 @@ Transform:
   - {fileID: 6421888039542631137}
   - {fileID: 3263704724219742981}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6416182821244599910
 MonoBehaviour:
@@ -54,6 +54,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faceColor: {r: 1, g: 1, b: 1, a: 0}
+  faceId: 0
+  isFull: 0
+  completionPercent: 0
   placedColors:
   - {r: 0, g: 0, b: 0, a: 1}
   - {r: 0, g: 0, b: 0, a: 1}

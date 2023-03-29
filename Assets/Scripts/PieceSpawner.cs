@@ -38,7 +38,7 @@ public class PieceSpawner : MonoBehaviour
     {
         var parent = new GameObject("Piece").transform;
         var piece = parent.gameObject.AddComponent<Piece>();
-        piece.PreparePiece();
+        piece.PreparePiece((nmino.structure.GetLength(0),nmino.structure.GetLength(1)), prefab.gameObject.layer);
         parent.position = transform.position;
         parent.rotation = rotation;
         foreach (var ind in nmino)
@@ -47,6 +47,7 @@ public class PieceSpawner : MonoBehaviour
             {
                 var couple = SpawnPiece(prefab, mat, new Vector3(ind.Item1 - 1, 0, ind.Item2 - 1), parent.transform);
                 couple.instantiated.name = "subPiece" + ind;
+                piece[ind] = couple.instantiated;
             }
         }
         StartCoroutine(ActivateLightBeam(piece));

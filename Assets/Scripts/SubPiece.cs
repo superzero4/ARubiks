@@ -14,9 +14,15 @@ public class SubPiece : MonoBehaviour
     {
         if (other.gameObject.GetComponent<SubPiece>() && isFalling)
         {
-            Destroy(gameObject);
+            DestroySubPiece();
         }
     }
+
+    public void DestroySubPiece()
+    {
+        Destroy(gameObject);
+    }
+
     public void Parent(Piece mother)
     {
         _mother = mother;

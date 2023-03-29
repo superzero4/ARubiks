@@ -4,9 +4,13 @@ using UnityEngine;
 using NMinos;
 using static NMinos.Indexes;
 using System;
+using System.Linq;
 
 public class Piece : MonoBehaviour
 {
+    /// <summary>
+    /// Not that much need for now, we could aswell use the transform childs instead
+    /// </summary>
     private Matrix<SubPiece> _subPieces;
     public SubPiece this[(int, int) index] { set => _subPieces[index] = value; }
     float speed = 3;
@@ -44,26 +48,48 @@ public class Piece : MonoBehaviour
         //We assume squares are laid out the same way as _subPieces are while we don't have an equivalent structure for squares
         var center = Indexes.IndexToCoord(square.Index, _subPieces.structure.GetLength(0));
         Debug.Log("Snapping to : " + square.Index + " became " + center);
+        Face face = square.Face;
         foreach (var ind in _subPieces)
         {
-            var sub = _subPieces[ind];
-            if (sub != null)
+            var sb = _subPieces[ind];
+            if (sb != null)
             {
-                (int i, int j) coord = Sum((-1, -1), Sum(ind, center));
-                if (_subPieces.OutOfBound(coord))
+                face.subPiecesToFlush.Add((sb, 0));
+            }
+        }
+        // Disable BCC2008
+        // Disable BCC4005
+
+        /*StartCoroutine(AfterSpecificUpdate<WaitForEndOfFrame>(() =>
+        {
+
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                var sb = transform.GetChild(i);
+                if (sb != null)
                 {
-                    Debug.Log(ind + " Removing coord : " + coord);
-                    sub.DestroySubPiece();
+                    if (!face.AreaContainsPoint(sb.transform.position))
+                        sb.GetComponent<SubPiece>().DestroySubPiece();
+                    else
+                    {
+                        Debug.Log(sb.name + " face kept " + face);
+                        //Debug.Break();
+                    }
                 }
             }
         }
-        StartCoroutine(DisableIsFalling());
-    }
-    private IEnumerator DisableIsFalling()
+        , 3));*/
+        StartCoroutine(AfterSpecificUpdate<WaitForFixedUpdate>(() => isFalling = false, 2));
+    } 
+    private IEnumerator AfterSpecificUpdate<T>(Action OnNextFixedUpdate, int nbOfFixedUpdate = 1) where T : YieldInstruction, new()
     {
-        yield return new WaitForFixedUpdate();
-        yield return new WaitForFixedUpdate();
-        isFalling = false;
+        while (nbOfFixedUpdate > 0)
+        {
+            nbOfFixedUpdate--;
+            yield return new T();
+        }
+        OnNextFixedUpdate?.Invoke();
+
     }
     private float ComputeClosestRotation(float y)
     {

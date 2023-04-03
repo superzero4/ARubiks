@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+    <Tracking>
+        <ImageTarget name="RedFaceFull" size="0.055000 0.055000"/>
+        <ImageTarget name="OrangeFaceFull" size="0.055000 0.055000"/>
+        <ImageTarget name="GreenFaceFull" size="0.055000 0.055000"/>
+        <ImageTarget name="BlueFaceFull" size="0.055000 0.055000"/>
+        <ImageTarget name="YellowFaceFull" size="0.055000 0.055000"/>
+        <ImageTarget name="WhiteFaceFull" size="0.055000 0.055000"/>
+        <ImageTarget name="Rubiks.Left" size="0.055000 0.055000"/>
+        <ImageTarget name="Rubiks.Top" size="0.055000 0.055000"/>
+        <ImageTarget name="Rubiks.Front" size="0.055000 0.055000"/>
+        <ImageTarget name="Rubiks.Right" size="0.055000 0.055000"/>
+        <ImageTarget name="Rubiks.Back" size="0.055000 0.055000"/>
+        <ImageTarget name="Rubiks.Bottom" size="0.055000 0.055000"/>
+        <ImageTarget name="RubiksCube.Left" size="0.055000 0.055000"/>
+        <ImageTarget name="RubiksCube.Top" size="0.055000 0.055000"/>
+        <ImageTarget name="RubiksCube.Front" size="0.055000 0.055000"/>
+        <ImageTarget name="RubiksCube.Right" size="0.055000 0.055000"/>
+        <ImageTarget name="RubiksCube.Back" size="0.055000 0.055000"/>
+        <ImageTarget name="RubiksCube.Bottom" size="0.055000 0.055000"/>
+        <MultiTarget name="Rubiks">
+            <Part name="Rubiks.Left" translation="-0.027499999850988388 0 0" rotation="AD: 0 1 0 -90"/>
+            <Part name="Rubiks.Right" translation="0.027499999850988388 0 0" rotation="AD: 0 1 0 90"/>
+            <Part name="Rubiks.Front" translation="0 0 0.027499999850988388" rotation="AD: 1 0 0 0"/>
+            <Part name="Rubiks.Back" translation="0 0 -0.027499999850988388" rotation="AD: 0 1 0 180"/>
+            <Part name="Rubiks.Top" translation="0 0.027499999850988388 0" rotation="AD: 1 0 0 -90"/>
+            <Part name="Rubiks.Bottom" translation="0 -0.027499999850988388 0" rotation="AD: 1 0 0 90"/>
+        </MultiTarget>
+        <MultiTarget name="RubiksCube">
+            <Part name="RubiksCube.Left" translation="-0.027499999850988388 0 0" rotation="AD: 0 1 0 -90"/>
+            <Part name="RubiksCube.Right" translation="0.027499999850988388 0 0" rotation="AD: 0 1 0 90"/>
+            <Part name="RubiksCube.Front" translation="0 0 0.027499999850988388" rotation="AD: 1 0 0 0"/>
+            <Part name="RubiksCube.Back" translation="0 0 -0.027499999850988388" rotation="AD: 0 1 0 180"/>
+            <Part name="RubiksCube.Top" translation="0 0.027499999850988388 0" rotation="AD: 1 0 0 -90"/>
+            <Part name="RubiksCube.Bottom" translation="0 -0.027499999850988388 0" rotation="AD: 1 0 0 90"/>
+        </MultiTarget>
+    </Tracking>
+</QCARConfig>

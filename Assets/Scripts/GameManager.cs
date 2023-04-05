@@ -11,11 +11,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] float spawnTime = 5f;
     [SerializeField, Range(1, 7f)] float _speed = 3f;
     public List<float> completionPercents = new List<float>();
+    public bool isEnded = false;
 
     void Start()
     {
         //Start piece spawn
-        StartCoroutine(RandomSpawnPiece());
+        //StartCoroutine(RandomSpawnPiece());
     }
 
     void Update()
@@ -41,21 +42,23 @@ public class GameManager : MonoBehaviour
             }
             moy = moy / completionPercents.Count;
             Debug.Log("Rubiks completion : " + moy + "%");
+
+            isEnded = true;
         }
     }
 
     //Spawn piece on a random spawner
-    IEnumerator RandomSpawnPiece()
+    public IEnumerator RandomSpawnPiece()
     {
         while (true)
         {
             //LegacySpawn();
             var piece = NMinos.NMino.NMinoFactory.RandomNMino();
             //var piece = NMinos.NMino.NMinoFactory.L4Mino();
-            var spawned = SpawnPiece(piece,
+            var spawned = SpawnPiece(piece
                 //In unity editor we alwasy spawn in the center cause we can't really move the cube, but not in build/real life so we can offset the pieces
 #if UNITY_EDITOR
-                pieceSpawners[4]
+                ,pieceSpawners[4]
 #endif
                 );
             spawned.Speed = _speed;

@@ -4,29 +4,37 @@ using UnityEngine;
 
 public class CubeRotation : MonoBehaviour
 {
-    Vector3 mPrevPos = Vector3.zero;
-    Vector3 mPosDelta = Vector3.zero;
+    GameManager gameManager;
+    [SerializeField] GameObject fakeCube;
+    MeshRenderer[] meshRenderers;
 
     //Temporary script to test cube rotation
 
+    private void Start()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+        meshRenderers = transform.GetComponentsInChildren<MeshRenderer>();
+        foreach (MeshRenderer mesh in meshRenderers)
+        {
+            mesh.enabled = false;
+        }
+    }
+
+    public void ActivateMesh()
+    {
+        foreach (MeshRenderer mesh in meshRenderers)
+        {
+            mesh.enabled = true;
+        }
+    }
+
     private void Update()
     {
-        if (Input.GetMouseButton(0))
+        if(fakeCube != null  && gameManager.cubeTracked)
         {
-            mPosDelta = Input.mousePosition - mPrevPos;
-            if(Vector3.Dot(transform.up, Vector3.up) >= 0)
-            {
-                transform.Rotate(transform.up, -Vector3.Dot(mPosDelta, Camera.main.transform.right), Space.World);
-            }
-            else
-            {
-                transform.Rotate(transform.up, Vector3.Dot(mPosDelta, Camera.main.transform.right), Space.World);
-            }
-
-            transform.Rotate(Camera.main.transform.right, Vector3.Dot(mPosDelta, Camera.main.transform.up), Space.World);
-
+            transform.position = fakeCube.transform.position;
+            transform.rotation = fakeCube.transform.rotation;
+            transform.localScale = fakeCube.transform.localScale;
         }
-
-        mPrevPos = Input.mousePosition;
     }
 }

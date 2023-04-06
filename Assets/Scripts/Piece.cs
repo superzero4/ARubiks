@@ -15,6 +15,7 @@ public class Piece : MonoBehaviour
     public SubPiece this[(int, int) index] { set => _subPieces[index] = value; }
     float speed = 3;
     bool isFalling = true;
+    public bool isPaused = false;
     public float Speed { get => speed; set => speed = value; }
     public void PreparePiece((int, int) sizeOfSubpieces, int layer)
     {
@@ -26,7 +27,7 @@ public class Piece : MonoBehaviour
     }
     private void Update()
     {
-        if (!isFalling)
+        if (!isFalling || isPaused)
             return;
 
         //Move the piece
@@ -104,5 +105,9 @@ public class Piece : MonoBehaviour
     public bool GetIsFalling()
     {
         return isFalling;
+    }
+    public void SetIsFalling(bool value)
+    {
+        isFalling = value;
     }
 }

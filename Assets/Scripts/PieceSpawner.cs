@@ -21,7 +21,7 @@ public class PieceSpawner : MonoBehaviour
     public Piece SpawnPiece(SubPiece p, Material mat)
     {
         var spawned = SpawnPiece(p, mat, Vector3.zero);
-        StartCoroutine(ActivateLightBeam(spawned.parent));
+        //StartCoroutine(ActivateLightBeam(spawned.parent));
         return spawned.parent;
     }
     //Spawn the piece and set her color
@@ -32,6 +32,7 @@ public class PieceSpawner : MonoBehaviour
         var subPiece = Instantiate(p, transform.position + offset, Quaternion.identity, parent);
         subPiece.GetComponent<MeshRenderer>().material = mat;
         subPiece.Parent(piece);
+        subPiece.transform.localScale = new Vector3(.018f, .018f, .018f);
         return (piece, subPiece);
     }
     public Piece SpawnPiece(SubPiece prefab, Material mat, NMinos.NMino nmino, Quaternion rotation)
@@ -45,12 +46,12 @@ public class PieceSpawner : MonoBehaviour
         {
             if (nmino[ind])
             {
-                var couple = SpawnPiece(prefab, mat, new Vector3(ind.Item1 - 1, 0, ind.Item2 - 1), parent.transform);
+                var couple = SpawnPiece(prefab, mat, new Vector3(ind.Item1 * .018f - .018f, 0, ind.Item2 * .018f - .018f), parent.transform);
                 couple.instantiated.name = "subPiece" + ind;
                 piece[ind] = couple.instantiated;
             }
         }
-        StartCoroutine(ActivateLightBeam(piece));
+        //StartCoroutine(ActivateLightBeam(piece));
         return piece;
     }
 

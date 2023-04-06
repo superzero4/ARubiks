@@ -9,9 +9,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private MaterialPicker _material;
     [SerializeField] PieceSpawner[] pieceSpawners;
     [SerializeField] float spawnTime = 5f;
-    [SerializeField, Range(1, 7f)] float _speed = 3f;
+    [SerializeField, Range(.01f, .7f)] float _speed = .3f;
     public List<float> completionPercents = new List<float>();
     public bool isEnded = false;
+    [SerializeField] GameObject virtualRubiksCube;
+    [HideInInspector] public bool cubeTracked;
 
     void Start()
     {
@@ -21,6 +23,12 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        //Set the game manager on top of the cube
+        if(virtualRubiksCube != null && cubeTracked)
+        {
+            transform.position = new Vector3(virtualRubiksCube.transform.position.x, virtualRubiksCube.transform.position.y + .5f, virtualRubiksCube.transform.position.z);
+        }
+
         //Check cube completion
         if (completionPercents.Count >= 6)
         {
@@ -47,24 +55,34 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void StopSpawning()
+    {
+        StopAllCoroutines();
+    }
+
     //Spawn piece on a random spawner
     public IEnumerator RandomSpawnPiece()
     {
         while (true)
         {
-            //LegacySpawn();
-            var piece = NMinos.NMino.NMinoFactory.RandomNMino();
-            //var piece = NMinos.NMino.NMinoFactory.L4Mino();
-            var spawned = SpawnPiece(piece
+            if (cubeTracked)
+            {
+                //LegacySpawn();
+                var piece = NMinos.NMino.NMinoFactory.RandomNMino();
+                //var piece = NMinos.NMino.NMinoFactory.L4Mino();
+                var spawned = SpawnPiece(piece
                 //In unity editor we alwasy spawn in the center cause we can't really move the cube, but not in build/real life so we can offset the pieces
 #if UNITY_EDITOR
-                ,pieceSpawners[4]
+                , pieceSpawners[4]
 #endif
                 );
-            spawned.Speed = _speed;
-            yield return new WaitForSeconds(spawnTime);
-            spawnTime -= Random.Range(Time.deltaTime, .2f);
-            spawnTime = Mathf.Clamp(spawnTime, 1.5f, 10);
+                spawned.Speed = _speed;
+                yield return new WaitForSeconds(spawnTime);
+                spawnTime -= Random.Range(Time.deltaTime, .2f);
+                spawnTime = Mathf.Clamp(spawnTime, 2, 10);
+            }
+            else
+                yield return new WaitForSeconds(spawnTime);
         }
     }
     private float CalculateFallSpeed()

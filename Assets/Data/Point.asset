@@ -13,24 +13,26 @@ MonoBehaviour:
   m_Name: Point
   m_EditorClassIdentifier: 
   id: 
-  colours: []
-  sizes: []
-  font: {fileID: 0}
+  colours:
+  - {r: 0.98823535, g: 0.40000004, b: 0.37254903, a: 1}
+  sizes:
+  - 1
+  font: {fileID: 11400000, guid: 771487ef4a9a6d841940ac945d21ee16, type: 2}
   bold: 0
-  italic: 0
+  italic: 1
   underline: 0
   strikethrough: 0
-  lifetime: 0
+  lifetime: 10
   numberOfColourAlternations: 0
   numberOfSizeAlternations: 0
   colourAlternationDuration: 0
   sizeAlternationDuration: 0
-  enterDuration: 0
-  exitDuration: 0
+  enterDuration: 0.5
+  exitDuration: 1
   maxDrift: 0
   maxHeight: 0
   popModifier: 0
   colourAlternationMode: 0
   sizeAlternationMode: 0
-  enterType: 
-  exitType: 0
+  enterType: 02000000
+  exitType: 1

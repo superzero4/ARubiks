@@ -17,6 +17,7 @@ public class Piece : MonoBehaviour
     bool isFalling = true;
     public bool isPaused = false;
     public float Speed { get => speed; set => speed = value; }
+    private static int pieceCount = 0;
     public void PreparePiece((int, int) sizeOfSubpieces, int layer)
     {
         _subPieces = new Matrix<SubPiece>(sizeOfSubpieces.Item1, sizeOfSubpieces.Item2);
@@ -24,6 +25,7 @@ public class Piece : MonoBehaviour
         rb.isKinematic = true;
         rb.useGravity = false;
         gameObject.layer = layer;
+        gameObject.name = "Piece " + ++pieceCount;
     }
     private void Update()
     {
@@ -48,7 +50,7 @@ public class Piece : MonoBehaviour
         //gameObject.transform.localScale = new Vector3(1.34f, 6.67f, 1.34f);
         //We assume squares are laid out the same way as _subPieces are while we don't have an equivalent structure for squares
         var center = Indexes.IndexToCoord(square.Index, _subPieces.structure.GetLength(0));
-        Debug.Log("Snapping to : " + square.Index + " became " + center);
+        //Debug.Log("Snapping to : " + square.Index + " became " + center);
         Face face = square.Face;
         foreach (var ind in _subPieces)
         {
@@ -80,8 +82,9 @@ public class Piece : MonoBehaviour
             }
         }
         , 3));*/
+        //isFalling = false;
         StartCoroutine(AfterSpecificUpdate<WaitForFixedUpdate>(() => isFalling = false, 2));
-    } 
+    }
     private IEnumerator AfterSpecificUpdate<T>(Action OnNextFixedUpdate, int nbOfFixedUpdate = 1) where T : YieldInstruction, new()
     {
         while (nbOfFixedUpdate > 0)
@@ -97,7 +100,7 @@ public class Piece : MonoBehaviour
         const int NbOfPossibility = 4;
         const float step = 360f / NbOfPossibility;
         var result = Mathf.RoundToInt((y / step)) * step;
-        Debug.Log("result : " + result);
+        //Debug.Log("result : " + result);
         return result;
     }
 

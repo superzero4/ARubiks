@@ -12,13 +12,13 @@ public class Face : MonoBehaviour
     private Collider _area;
     public bool isFull;
     [SerializeField] float completionPercent;
-    public List<(SubPiece, int)> subPiecesToFlush=new List<(SubPiece, int)>();
+    public List<(SubPiece, int)> subPiecesToFlush = new List<(SubPiece, int)>();
     const int pieceCorrectTreshold = 2;
-    public Color[] placedColors =
+    public Color?[] placedColors =
     {
-        Color.black, Color.black, Color.black,
-        Color.black, Color.black, Color.black,
-        Color.black, Color.black, Color.black
+        null, null, null,
+        null, null, null,
+        null, null, null
     };
     private void FixedUpdate()
     {
@@ -31,7 +31,7 @@ public class Face : MonoBehaviour
             {
                 subPiecesToFlush.RemoveAt(i);
             }
-            if (piece.Item1!=null && !AreaContainsPoint(piece.Item1.transform.position))
+            if (piece.Item1 != null && !AreaContainsPoint(piece.Item1.transform.position))
             {
                 piece.Item1.DestroySubPiece();
                 subPiecesToFlush.RemoveAt(i);
@@ -39,27 +39,35 @@ public class Face : MonoBehaviour
         }
     }
     //Register color of a piece that falled on a square of the face
-    public void UpdateFaceColor(int squareIndex, Color pieceColor)
+    public bool UpdateFaceColor(int squareIndex, SubPiece subPiece, string additionnalInfo = "")
     {
-        if (isFull)
-            return;
+        //If face is complete we shouldn't be here
+        //If the square is already filled we shouldn't be here, but it can happen so we check
+        if (isFull || placedColors[squareIndex].HasValue)
+            return false;
 
-        placedColors[squareIndex] = pieceColor;
+        placedColors[squareIndex] = subPiece.Color;
         isFull = IsFaceFull();
+        Debug.Log(gameObject.name + " face--Registering " + subPiece.name + " on " + additionnalInfo);
+        //Debug.Break();
+        subPiece._isRegistered = true;
+        return true;
     }
     internal bool AreaContainsPoint(Vector3 position) => _area.bounds.Contains(position);
 
     //Check if all the square of the face has been registred / if the face is completed
     public bool IsFaceFull()
     {
-        foreach (Color color in placedColors)
+        foreach (Color? color in placedColors)
         {
-            if (color == Color.black)
+            if (!color.HasValue)
                 return false;
         }
 
         CalculateCompletion();
-
+        Debug.Log(string.Join(',', placedColors) + " Face : " + gameObject.name + " is full");
+        if (GetComponentsInChildren<SubPiece>().Length != 9)
+            Debug.LogError(GetComponentsInChildren<SubPiece>().Length + " subpieces under face " + gameObject.name + " probably due to one on edge that will be suppressed soon");
         return true;
     }
 
@@ -67,9 +75,9 @@ public class Face : MonoBehaviour
     void CalculateCompletion()
     {
         float i = 0;
-        foreach (Color color in placedColors)
+        foreach (Color? color in placedColors)
         {
-            if (color == faceColor)
+            if (color.HasValue && color.Value == faceColor)
             {
                 i += 1;
             }

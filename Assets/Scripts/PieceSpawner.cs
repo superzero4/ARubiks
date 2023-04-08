@@ -7,7 +7,6 @@ public class PieceSpawner : MonoBehaviour
     GameObject lightBeam;
 
     int isActive = 0;
-
     private void Awake()
     {
         lightBeam = transform.GetChild(0).gameObject;
@@ -23,16 +22,6 @@ public class PieceSpawner : MonoBehaviour
         var spawned = SpawnPiece(p, mat, Vector3.zero);
         StartCoroutine(ActivateLightBeam(spawned.parent));
         return spawned.parent;
-    }
-    //Spawn the piece and set her color
-    public (Piece parent, SubPiece instantiated) SpawnPiece(SubPiece p, Material mat, Vector3 offset, Transform parent = null)
-    {
-        if (parent == null || !parent.TryGetComponent<Piece>(out Piece piece))
-            piece = parent.gameObject.AddComponent<Piece>();
-        var subPiece = Instantiate(p, transform.position + offset, Quaternion.identity, parent);
-        subPiece.GetComponent<MeshRenderer>().material = mat;
-        subPiece.Parent(piece);
-        return (piece, subPiece);
     }
     public Piece SpawnPiece(SubPiece prefab, Material mat, NMinos.NMino nmino, Quaternion rotation)
     {
@@ -52,6 +41,16 @@ public class PieceSpawner : MonoBehaviour
         }
         StartCoroutine(ActivateLightBeam(piece));
         return piece;
+    }
+    //Spawn the piece and set her color
+    public (Piece parent, SubPiece instantiated) SpawnPiece(SubPiece p, Material mat, Vector3 offset, Transform parent = null)
+    {
+        if (parent == null || !parent.TryGetComponent<Piece>(out Piece piece))
+            piece = parent.gameObject.AddComponent<Piece>();
+        var subPiece = Instantiate(p, transform.position + offset, Quaternion.identity, parent);
+        subPiece.GetComponent<MeshRenderer>().material = mat;
+        subPiece.Parent(piece);
+        return (piece, subPiece);
     }
 
 

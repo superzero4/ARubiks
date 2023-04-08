@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PieceSpawner : MonoBehaviour
 {
+    static readonly Vector3 MinoScale = new Vector3(.018f, .018f, .018f);
     GameObject lightBeam;
 
     int isActive = 0;
@@ -31,7 +32,7 @@ public class PieceSpawner : MonoBehaviour
         var subPiece = Instantiate(p, transform.position + offset, Quaternion.identity, parent);
         subPiece.GetComponent<MeshRenderer>().material = mat;
         subPiece.Parent(piece);
-        subPiece.transform.localScale = new Vector3(.018f, .018f, .018f);
+        subPiece.transform.localScale = MinoScale;
         return (piece, subPiece);
     }
     public Piece SpawnPiece(SubPiece prefab, Material mat, NMinos.NMino nmino, Quaternion rotation)

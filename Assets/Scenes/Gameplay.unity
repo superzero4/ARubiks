@@ -1051,6 +1051,7 @@ GameObject:
   - component: {fileID: 954186938}
   - component: {fileID: 954186937}
   - component: {fileID: 954186939}
+  - component: {fileID: 954186940}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1130,6 +1131,19 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 3c2c6a6e99c7b384eaf6680cd3ba2951, type: 2}
   - {fileID: 2100000, guid: 894261a2584998843987745a8ea1b502, type: 2}
   - {fileID: 2100000, guid: bf83f2eac61d7a242bbd8998be263e14, type: 2}
+--- !u!114 &954186940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954186936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b024902561dcea4cbda9e2ae5e2f7ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timeScale: 20
 --- !u!1001 &999925257
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2128,6 +2142,7 @@ GameObject:
   - component: {fileID: 1651594802}
   - component: {fileID: 1651594801}
   - component: {fileID: 1651594805}
+  - component: {fileID: 1651594806}
   m_Layer: 0
   m_Name: RubiksCube
   m_TagString: Untagged
@@ -2206,7 +2221,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1651594800}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2229,6 +2244,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d69c702c824e46c4aa585b8bd85a2ed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1651594806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651594800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65480ed2c6c92cd47b32fa2ec4e5b3b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1704607798

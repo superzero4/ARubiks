@@ -30,7 +30,7 @@ public class CubeRotation : MonoBehaviour
 
     private void Update()
     {
-        if(fakeCube != null  && gameManager.cubeTracked)
+        if(fakeCube != null  && gameManager.CubeTracked)
         {
             transform.position = fakeCube.transform.position;
             transform.rotation = fakeCube.transform.rotation;

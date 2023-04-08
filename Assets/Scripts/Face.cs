@@ -14,12 +14,19 @@ public class Face : MonoBehaviour
     [SerializeField] float completionPercent;
     public List<(SubPiece, int)> subPiecesToFlush = new List<(SubPiece, int)>();
     const int pieceCorrectTreshold = 2;
+    private GameManager _gameManager;
+    private ScoreManager _scoreManager;
     public Color?[] placedColors =
     {
         null, null, null,
         null, null, null,
         null, null, null
     };
+    private void Awake()
+    {
+        _gameManager = FindObjectOfType<GameManager>();
+        _scoreManager = _gameManager.Score;
+    }
     private void FixedUpdate()
     {
         Physics.SyncTransforms();
@@ -48,9 +55,10 @@ public class Face : MonoBehaviour
 
         placedColors[squareIndex] = subPiece.Color;
         isFull = IsFaceFull();
-        Debug.Log(gameObject.name + " face--Registering " + subPiece.name + " on " + additionnalInfo);
+        //Debug.Log(gameObject.name + " face--Registering " + subPiece.name + " on " + additionnalInfo);
         //Debug.Break();
         subPiece._isRegistered = true;
+        _scoreManager.SpawnScore(subPiece);
         return true;
     }
     internal bool AreaContainsPoint(Vector3 position) => _area.bounds.Contains(position);
@@ -64,7 +72,9 @@ public class Face : MonoBehaviour
                 return false;
         }
 
-        CalculateCompletion();
+        CalculateCompletion(out bool isPerfect);
+        if (isPerfect)
+            _scoreManager.SpawnScore(this);
         Debug.Log(string.Join(',', placedColors) + " Face : " + gameObject.name + " is full");
         if (GetComponentsInChildren<SubPiece>().Length != 9)
             Debug.LogError(GetComponentsInChildren<SubPiece>().Length + " subpieces under face " + gameObject.name + " probably due to one on edge that will be suppressed soon");
@@ -72,7 +82,7 @@ public class Face : MonoBehaviour
     }
 
     //Calculate completion percentage of the face
-    void CalculateCompletion()
+    void CalculateCompletion(out bool isPerfect)
     {
         float i = 0;
         foreach (Color? color in placedColors)
@@ -84,7 +94,8 @@ public class Face : MonoBehaviour
         }
 
         completionPercent = Mathf.Floor(i / placedColors.Length * 100);
-        FindObjectOfType<GameManager>().CompleteFace(completionPercent, faceId);
+        isPerfect = i == placedColors.Length;
+        _gameManager.CompleteFace(completionPercent, faceId);
     }
 
 

@@ -13,11 +13,10 @@ MonoBehaviour:
   m_Name: Point
   m_EditorClassIdentifier: 
   id: 
-  colours:
-  - {r: 0.98823535, g: 0.40000004, b: 0.37254903, a: 1}
+  colours: []
   sizes:
   - 1
-  font: {fileID: 11400000, guid: 771487ef4a9a6d841940ac945d21ee16, type: 2}
+  font: {fileID: 11400000, guid: 0e23771964492c245ac40bd3d0b16806, type: 2}
   bold: 0
   italic: 1
   underline: 0

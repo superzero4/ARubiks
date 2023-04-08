@@ -42,7 +42,6 @@ public class Square : MonoBehaviour
             if (piece != null && piece.GetIsFalling())
             {
                 //Debug.Log(gameObject.name + " from " + face.name);
-                Debug.LogWarning("To do, ensure that connected cubes also update their corresponding squares");
                 var or = piece.transform.position;
                 var down = face.transform.parent.position - or;
                 Debug.DrawRay(or, down, Color.red, 1f);

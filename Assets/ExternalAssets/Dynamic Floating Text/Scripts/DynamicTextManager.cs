@@ -7,11 +7,11 @@ public class DynamicTextManager : MonoBehaviour
 {
 
     public static DynamicTextData defaultData;
-    public static GameObject canvasPrefab;
+    public static FloatingAnimation canvasPrefab;
     public static Transform mainCamera;
 
     [SerializeField] private DynamicTextData _defaultData;
-    [SerializeField] private GameObject _canvasPrefab;
+    [SerializeField] private FloatingAnimation _canvasPrefab;
     [SerializeField] private Transform _mainCamera;
 
     private void Awake()
@@ -21,16 +21,18 @@ public class DynamicTextManager : MonoBehaviour
         canvasPrefab = _canvasPrefab;
     }
 
-    public static void CreateText2D(Vector2 position, string text, DynamicTextData data)
+    public static FloatingAnimation CreateText2D(Vector2 position, string text, DynamicTextData data)
     {
-        GameObject newText = Instantiate(canvasPrefab, position, Quaternion.identity);
+        var newText = Instantiate(canvasPrefab, position, Quaternion.identity);
         newText.transform.GetComponent<DynamicText2D>().Initialise(text, data);
+        return newText;
     }
 
-    public static void CreateText(Vector3 position, string text, DynamicTextData data)
+    public static FloatingAnimation CreateText(Vector3 position, string text, DynamicTextData data)
     {
-        GameObject newText = Instantiate(canvasPrefab, position, Quaternion.identity);
+        var newText = Instantiate(canvasPrefab, position, Quaternion.identity);
         newText.transform.GetComponent<DynamicText>().Initialise(text, data);
+        return newText;
     }
 
 }

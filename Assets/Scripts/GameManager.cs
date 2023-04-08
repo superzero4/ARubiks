@@ -5,6 +5,7 @@ using Sirenix.OdinInspector;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private bool _allowCubeUntracked = true;
     [SerializeField, AssetsOnly] SubPiece _piecePrefab;
     [SerializeField] private MaterialPicker _material;
     [SerializeField] PieceSpawner[] pieceSpawners;
@@ -13,18 +14,38 @@ public class GameManager : MonoBehaviour
     public List<float> completionPercents = new List<float>();
     public bool isEnded = false;
     [SerializeField] GameObject virtualRubiksCube;
-    [HideInInspector] public bool cubeTracked;
+    [SerializeField] ScoreManager _score;
+    private bool _cubeTracked;
+    public bool CubeTracked
+    {
+        get => _allowCubeUntracked || _cubeTracked;
+        set => _cubeTracked = value;
+    }
 
+    public ScoreManager Score { get => _score; }
+    public GameObject VirtualRubiksCube { get => virtualRubiksCube; set => virtualRubiksCube = value; }
+    private void Awake()
+    {
+#if !UNITY_EDITOR
+        _allowCubeUntracked = false;
+#else
+
+#endif
+    }
     void Start()
     {
+        if (_allowCubeUntracked)
+        {
+            FindObjectOfType<DefaultObserverEventHandler>().OnTargetFound.Invoke();
+        }
         //Start piece spawn
-        //StartCoroutine(RandomSpawnPiece());
+        StartCoroutine(RandomSpawnPiece());
     }
 
     void Update()
     {
         //Set the game manager on top of the cube
-        if(virtualRubiksCube != null && cubeTracked)
+        if (virtualRubiksCube != null && CubeTracked)
         {
             transform.position = new Vector3(virtualRubiksCube.transform.position.x, virtualRubiksCube.transform.position.y + .5f, virtualRubiksCube.transform.position.z);
         }
@@ -43,16 +64,24 @@ public class GameManager : MonoBehaviour
             }
 
             //Calculate total rubiks completion
-            float moy = 0;
-            foreach (float percent in completionPercents)
-            {
-                moy += percent;
-            }
-            moy = moy / completionPercents.Count;
-            Debug.Log("Rubiks completion : " + moy + "%");
+            float moy = CalculateMoy();
+            if (moy >= 100)
+                _score.SpawnScore(this);
 
             isEnded = true;
         }
+    }
+
+    private float CalculateMoy()
+    {
+        float moy = 0;
+        foreach (float percent in completionPercents)
+        {
+            moy += percent;
+        }
+        moy /= completionPercents.Count;
+        Debug.Log("Rubiks completion : " + moy + "%");
+        return moy;
     }
 
     public void StopSpawning()
@@ -65,7 +94,7 @@ public class GameManager : MonoBehaviour
     {
         while (true)
         {
-            if (cubeTracked)
+            if (CubeTracked)
             {
                 //LegacySpawn();
                 var piece = NMinos.NMino.NMinoFactory.RandomNMino();
@@ -111,5 +140,6 @@ public class GameManager : MonoBehaviour
     {
         completionPercents.Add(completionPercent);
         _material.RedistributeProbability(faceId);
+        _score.UpdatePercent(CalculateMoy());
     }
 }

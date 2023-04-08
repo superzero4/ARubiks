@@ -11,7 +11,7 @@ public class Pause : MonoBehaviour
     [SerializeField] CubeRotation cubeRotation;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         gameManager = FindObjectOfType<GameManager>();
 
@@ -34,13 +34,13 @@ public class Pause : MonoBehaviour
         Debug.Log("Start game");
         cubeRotation.ActivateMesh();
         isStarted = true;
-        gameManager.cubeTracked = true;
+        gameManager.CubeTracked = true;
         StartCoroutine(gameManager.RandomSpawnPiece());
     }
 
     void UnpauseGame()
     {
-        gameManager.cubeTracked = true;
+        gameManager.CubeTracked = true;
         if (!gameManager.isEnded)
         {
             Debug.Log("Unpause game");
@@ -56,7 +56,7 @@ public class Pause : MonoBehaviour
 
     void PauseGame()
     {
-        gameManager.cubeTracked = false;
+        gameManager.CubeTracked = false;
         if (!gameManager.isEnded)
         {
             Debug.Log("Pause game");

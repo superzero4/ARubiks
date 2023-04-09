@@ -27,12 +27,12 @@ MonoBehaviour:
   numberOfSizeAlternations: 0
   colourAlternationDuration: 0
   sizeAlternationDuration: 0
-  enterDuration: 0.5
+  enterDuration: 0.2
   exitDuration: 1
   maxDrift: 0
   maxHeight: 0
-  popModifier: 0
+  popModifier: 2
   colourAlternationMode: 0
   sizeAlternationMode: 0
-  enterType: 02000000
+  enterType: 0200000001000000
   exitType: 1

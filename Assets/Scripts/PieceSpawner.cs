@@ -27,7 +27,7 @@ public class PieceSpawner : MonoBehaviour
     {
         var parent = new GameObject("Piece").transform;
         var piece = parent.gameObject.AddComponent<Piece>();
-        piece.PreparePiece((nmino.structure.GetLength(0),nmino.structure.GetLength(1)), prefab.gameObject.layer);
+        piece.PreparePiece((nmino.structure.GetLength(0), nmino.structure.GetLength(1)), prefab.gameObject.layer);
         parent.position = transform.position;
         parent.rotation = rotation;
         foreach (var ind in nmino)
@@ -62,14 +62,8 @@ public class PieceSpawner : MonoBehaviour
         GameObject pieceObject = piece.gameObject;
         lightBeam.SetActive(true);
         isActive++;
-
-        while (pieceObject != null && piece.GetIsFalling())
-        {
-            yield return new WaitForSeconds(Time.deltaTime);
-        }
-
+        yield return new WaitWhile(() => pieceObject != null && piece.GetIsFalling());
         isActive--;
-
         if (isActive == 0)
             lightBeam.SetActive(false);
     }

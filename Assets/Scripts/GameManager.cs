@@ -50,7 +50,8 @@ public class GameManager : MonoBehaviour
         {
             FindObjectOfType<DefaultObserverEventHandler>().OnTargetFound.Invoke();
         }
-        completionPercents=new List<float>(Enumerable.Repeat(0f, NbOfFaces));    
+        CenterOnCube();
+        completionPercents =new List<float>(Enumerable.Repeat(0f, NbOfFaces));    
     }
 
     void Update()
@@ -83,6 +84,7 @@ public class GameManager : MonoBehaviour
         }
     }
     //Called from UI
+    [Button]
     public void CenterOnCube()
     {
         transform.position = new Vector3(virtualRubiksCube.transform.position.x, virtualRubiksCube.transform.position.y + .5f, virtualRubiksCube.transform.position.z);

@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class DestroyArea : MonoBehaviour
 {
     [SerializeField] private Renderer _renderer;
     [SerializeField] private Color defaultColor;
+    [SerializeField, Range(0f, 4f)] private float _timeToChange;
     private void Start()
     {
         SetColor(defaultColor);
@@ -21,6 +23,7 @@ public class DestroyArea : MonoBehaviour
 
     private void SetColor(Color color)
     {
-        _renderer.material.SetColor("_Color", color);
+        DOTween.To(() => _renderer.material.GetColor("_Color"),
+            (c) => _renderer.material.SetColor("_Color", c), color, _timeToChange);
     }
 }

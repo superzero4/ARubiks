@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     private const float OneSquareCompletionPercentValue = (1f / NbOfFaces) * PerfectPercentage;
     private const int PerfectPercentage = 100;
     [SerializeField] private bool _allowCubeUntracked = true;
+    [SerializeField] private bool _permanentFollow = false;
     [SerializeField, AssetsOnly] SubPiece _piecePrefab;
     [SerializeField] private MaterialPicker _material;
     [SerializeField]
@@ -55,9 +56,9 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //Set the game manager on top of the cube
-        if (virtualRubiksCube != null && CubeTracked)
+        if (virtualRubiksCube != null && CubeTracked && _permanentFollow)
         {
-            transform.position = new Vector3(virtualRubiksCube.transform.position.x, virtualRubiksCube.transform.position.y + .5f, virtualRubiksCube.transform.position.z);
+            CenterOnCube();
         }
 
         //Check cube completion
@@ -80,6 +81,11 @@ public class GameManager : MonoBehaviour
 
             isEnded = true;
         }
+    }
+    //Called from UI
+    public void CenterOnCube()
+    {
+        transform.position = new Vector3(virtualRubiksCube.transform.position.x, virtualRubiksCube.transform.position.y + .5f, virtualRubiksCube.transform.position.z);
     }
 
     private float CalculateMoy()

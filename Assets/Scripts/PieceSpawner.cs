@@ -21,7 +21,7 @@ public class PieceSpawner : MonoBehaviour
     public Piece SpawnPiece(SubPiece p, Material mat)
     {
         var spawned = SpawnPiece(p, mat, Vector3.zero);
-        //StartCoroutine(ActivateLightBeam(spawned.parent));
+        StartCoroutine(ActivateLightBeam(spawned.parent));
         return spawned.parent;
     }
     //Spawn the piece and set her color

@@ -51,6 +51,7 @@ public class PieceSpawner : MonoBehaviour
         subPiece.GetComponent<MeshRenderer>().material = mat;
         subPiece.Parent(piece);
         subPiece.transform.localScale = MinoScale;
+        StartCoroutine(ActivateLightBeam(piece));
         return (piece, subPiece);
     }
 

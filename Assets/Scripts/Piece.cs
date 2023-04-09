@@ -35,8 +35,8 @@ public class Piece : MonoBehaviour
         //Move the piece
         transform.position = transform.position - new Vector3(0, 1, 0) * speed * Time.deltaTime;
 
-        if (transform.position.y <= -5)
-            Destroy(gameObject);
+        /*if (transform.position.y <= -5)
+            Destroy(gameObject);*/
     }
     //Attach the piece to the square it fallen on
     public void SetOnSquare(Square square)
@@ -113,4 +113,11 @@ public class Piece : MonoBehaviour
     {
         isFalling = value;
     }
+    public void Destroy()
+    {
+        foreach (var s in _subPieces)
+            _subPieces[s]?.DestroySubPiece();
+        Destroy(gameObject,10f);
+    }
+    public Color? Color => _subPieces[_subPieces.FirstOrDefault()]?.Color;
 }

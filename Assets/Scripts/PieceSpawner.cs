@@ -5,7 +5,7 @@ using UnityEngine;
 public class PieceSpawner : MonoBehaviour
 {
     static readonly Vector3 MinoScale = new Vector3(.018f, .018f, .018f);
-    GameObject lightBeam;
+    public GameObject lightBeam;
 
     int isActive = 0;
     private void Awake()

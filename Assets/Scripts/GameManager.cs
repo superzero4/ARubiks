@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool _allowCubeUntracked = true;
     [SerializeField, AssetsOnly] SubPiece _piecePrefab;
     [SerializeField] private MaterialPicker _material;
+    [SerializeField]
+    private GameObject lightbeam;
     [SerializeField] PieceSpawner[] pieceSpawners;
     [SerializeField] float spawnTime = 5f;
     [SerializeField, Range(.01f, .7f)] float _speed = .3f;
@@ -36,6 +38,10 @@ public class GameManager : MonoBehaviour
 #else
 
 #endif
+        foreach(var spawn in pieceSpawners)
+        {
+            spawn.lightBeam = lightbeam;
+        }
     }
     void Start()
     {
@@ -105,7 +111,7 @@ public class GameManager : MonoBehaviour
                 //var piece = NMinos.NMino.NMinoFactory.L4Mino();
                 var spawned = SpawnPiece(piece
                 //In unity editor we alwasy spawn in the center cause we can't really move the cube, but not in build/real life so we can offset the pieces
-#if UNITY_EDITOR
+#if UNITY_EDITOR && false
                 , pieceSpawners[4]
 #endif
                 );

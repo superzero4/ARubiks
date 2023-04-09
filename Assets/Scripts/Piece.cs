@@ -117,7 +117,7 @@ public class Piece : MonoBehaviour
     {
         foreach (var s in _subPieces)
             _subPieces[s]?.DestroySubPiece();
-        Destroy(gameObject,10f);
+        Destroy(gameObject, 10f);
     }
-    public Color? Color => _subPieces[_subPieces.FirstOrDefault()]?.Color;
+    public Color? Color => _subPieces.Select(i => _subPieces[i]).FirstOrDefault(s => s != null)?.Color;
 }

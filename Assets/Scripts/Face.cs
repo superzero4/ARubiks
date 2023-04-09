@@ -52,13 +52,17 @@ public class Face : MonoBehaviour
         //If the square is already filled we shouldn't be here, but it can happen so we check
         if (isFull || placedColors[squareIndex].HasValue)
             return false;
-
-        placedColors[squareIndex] = subPiece.Color;
+        Color color = subPiece.Color;
+        placedColors[squareIndex] = color;
         isFull = IsFaceFull();
         //Debug.Log(gameObject.name + " face--Registering " + subPiece.name + " on " + additionnalInfo);
         //Debug.Break();
         subPiece._isRegistered = true;
-        _scoreManager.SpawnScore(subPiece);
+        if (IsColorMatchFace(color))
+        {
+            _gameManager.UpdatePercentage(faceId);
+            _scoreManager.SpawnScore(subPiece);
+        }
         return true;
     }
     internal bool AreaContainsPoint(Vector3 position) => _area.bounds.Contains(position);
@@ -71,32 +75,15 @@ public class Face : MonoBehaviour
             if (!color.HasValue)
                 return false;
         }
-
-        CalculateCompletion(out bool isPerfect);
-        if (isPerfect)
+        if (_gameManager.CompleteFace(faceId))
             _scoreManager.SpawnScore(this);
-        Debug.Log(string.Join(',', placedColors) + " Face : " + gameObject.name + " is full");
+        //Debug.Log(string.Join(',', placedColors) + " Face : " + gameObject.name + " is full");
         if (GetComponentsInChildren<SubPiece>().Length != 9)
             Debug.LogError(GetComponentsInChildren<SubPiece>().Length + " subpieces under face " + gameObject.name + " probably due to one on edge that will be suppressed soon");
         return true;
     }
-
-    //Calculate completion percentage of the face
-    void CalculateCompletion(out bool isPerfect)
+    private bool IsColorMatchFace(Color color)
     {
-        float i = 0;
-        foreach (Color? color in placedColors)
-        {
-            if (color.HasValue && color.Value == faceColor)
-            {
-                i += 1;
-            }
-        }
-
-        completionPercent = Mathf.Floor(i / placedColors.Length * 100);
-        isPerfect = i == placedColors.Length;
-        _gameManager.CompleteFace(completionPercent, faceId);
+        return color == faceColor;
     }
-
-
 }

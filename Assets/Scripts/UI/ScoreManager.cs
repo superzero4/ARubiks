@@ -20,6 +20,8 @@ public class ScoreManager : MonoBehaviour
     private Possibilites _bonusForPerfectFace;
     [SerializeField]
     private Possibilites _bonusForPerfectCube;
+    private int _score = 0;
+    private float _percent = 0f;
     [System.Serializable]
     public struct Text
     {
@@ -58,15 +60,28 @@ public class ScoreManager : MonoBehaviour
     private void SpawnScore(Vector3 origin, Possibilites _case)
     {
         var text = DynamicTextManager.CreateText(origin, _case.ToString(), _case.data);
+        //Debug.Break();
         text.StartAnimation(() => UpdateScore(_case.score));
     }
     private void UpdateText(Text text, object value) => text.Update(value);
-    public void UpdateScore(object value) => _scoreText.Update(value);
-    public void UpdatePercent(object value) => _percentText.Update(value);
+    public void UpdateScore(int value)
+    {
+        _score += value;
+        _scoreText.Update(_score);
+    }
+
+    public void UpdatePercent(float value)
+    {
+        //We rewrite the variable, we are not incrementing percent as we could
+        _percent = value;
+        _percentText.Update(Mathf.RoundToInt(_percent));
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-
+        UpdateScore(0);
+        UpdatePercent(0f);
     }
 
     // Update is called once per frame

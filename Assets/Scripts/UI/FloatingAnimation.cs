@@ -7,10 +7,13 @@ using System;
 
 public class FloatingAnimation : MonoBehaviour
 {
+    [HideInInspector] public Camera cam;
     [SerializeField, Range(.1f, 10f)]
     private float _time;
     [SerializeField]
     private Ease _ease;
+    [SerializeField]
+    private AnimationCurve _curve;
     ScoreManager _score;
     // Start is called before the first frame update
     private void Awake()
@@ -24,7 +27,14 @@ public class FloatingAnimation : MonoBehaviour
 
     public void StartAnimation(TweenCallback onComplete)
     {
-        (transform as RectTransform).DOMoveY(Screen.height, _time).SetEase(_ease).SetAutoKill().OnComplete(onComplete);
+        var rt = transform as RectTransform;
+        // Start the floating animation        
+        float canvasDistance = Vector3.Distance(rt.position, cam.transform.position);
+        float canvasHeight = 2.0f * canvasDistance * Mathf.Tan(cam.fieldOfView * 0.5f * Mathf.Deg2Rad);
+        Vector3 startPos = rt.position;
+        Vector3 endPos = startPos + Vector3.up * (canvasHeight);
+        rt.DOMove(endPos, _time).SetEase(_curve)/*.SetAutoKill()*/.OnComplete(onComplete);
+
     }
 
     // Update is called once per frame

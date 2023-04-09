@@ -2,16 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
+    private const int NbOfFaces = 6;
+    private const float OneSquareCompletionPercentValue = (1f / NbOfFaces) * PerfectPercentage;
+    private const int PerfectPercentage = 100;
     [SerializeField] private bool _allowCubeUntracked = true;
     [SerializeField, AssetsOnly] SubPiece _piecePrefab;
     [SerializeField] private MaterialPicker _material;
     [SerializeField] PieceSpawner[] pieceSpawners;
     [SerializeField] float spawnTime = 5f;
     [SerializeField, Range(.01f, .7f)] float _speed = .3f;
-    public List<float> completionPercents = new List<float>();
+    private List<float> completionPercents = new List<float>();
+    private int _nbOfFacesCompleted;
     public bool isEnded = false;
     [SerializeField] GameObject virtualRubiksCube;
     [SerializeField] ScoreManager _score;
@@ -38,6 +43,7 @@ public class GameManager : MonoBehaviour
         {
             FindObjectOfType<DefaultObserverEventHandler>().OnTargetFound.Invoke();
         }
+        completionPercents=new List<float>(Enumerable.Repeat(0f, NbOfFaces));    
     }
 
     void Update()
@@ -49,7 +55,7 @@ public class GameManager : MonoBehaviour
         }
 
         //Check cube completion
-        if (completionPercents.Count >= 6)
+        if (_nbOfFacesCompleted >= NbOfFaces)
         {
             StopAllCoroutines();
 
@@ -63,7 +69,7 @@ public class GameManager : MonoBehaviour
 
             //Calculate total rubiks completion
             float moy = CalculateMoy();
-            if (moy >= 100)
+            if (moy >= PerfectPercentage)
                 _score.SpawnScore(this);
 
             isEnded = true;
@@ -132,12 +138,17 @@ public class GameManager : MonoBehaviour
         spawner ??= RandomSpawner();
         return spawner.SpawnPiece(_piecePrefab, _material.RandomMat, piece, Quaternion.identity);
     }
-
-    //Get the percent completion of a complete face
-    public void CompleteFace(float completionPercent, int faceId)
+    public void UpdatePercentage(int id)
     {
-        completionPercents.Add(completionPercent);
-        _material.RedistributeProbability(faceId);
+        completionPercents[id] += OneSquareCompletionPercentValue;
         _score.UpdatePercent(CalculateMoy());
+    }
+    //Get the percent completion of a complete face
+    public bool CompleteFace(int faceId)
+    {
+        _nbOfFacesCompleted++;
+        _material.RedistributeProbability(faceId);
+        bool isPerfect = completionPercents[faceId] >= 100f;
+        return isPerfect;
     }
 }

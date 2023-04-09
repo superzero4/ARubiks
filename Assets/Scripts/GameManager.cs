@@ -38,8 +38,6 @@ public class GameManager : MonoBehaviour
         {
             FindObjectOfType<DefaultObserverEventHandler>().OnTargetFound.Invoke();
         }
-        //Start piece spawn
-        StartCoroutine(RandomSpawnPiece());
     }
 
     void Update()

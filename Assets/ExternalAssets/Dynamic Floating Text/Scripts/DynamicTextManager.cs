@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Sirenix.OdinInspector;
 
 public class DynamicTextManager : MonoBehaviour
 {
@@ -35,6 +36,13 @@ public class DynamicTextManager : MonoBehaviour
         newText.transform.GetComponent<DynamicText>().Initialise(text, data);
         newText.cam = mainCamera.GetComponent<Camera>();
         return newText;
+    }
+    [Button]
+    public void SampleText()
+    {
+        canvasPrefab = _canvasPrefab;
+        mainCamera=_mainCamera;
+        CreateText(FindObjectOfType<Face>().transform.position, "100", _defaultData);
     }
 
 }

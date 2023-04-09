@@ -5,14 +5,10 @@ using UnityEngine;
 public class PieceSpawner : MonoBehaviour
 {
     static readonly Vector3 MinoScale = new Vector3(.018f, .018f, .018f);
+    [HideInInspector]
     public GameObject lightBeam;
 
     int isActive = 0;
-    private void Awake()
-    {
-        lightBeam = transform.GetChild(0).gameObject;
-    }
-
     /*//Spawn the piece and set her color
     public void SpawnPiece(Piece p)
     {

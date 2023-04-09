@@ -25,6 +25,7 @@ public class DynamicTextManager : MonoBehaviour
     {
         var newText = Instantiate(canvasPrefab, position, Quaternion.identity);
         newText.transform.GetComponent<DynamicText2D>().Initialise(text, data);
+        newText.cam = mainCamera.GetComponent<Camera>();
         return newText;
     }
 
@@ -32,6 +33,7 @@ public class DynamicTextManager : MonoBehaviour
     {
         var newText = Instantiate(canvasPrefab, position, Quaternion.identity);
         newText.transform.GetComponent<DynamicText>().Initialise(text, data);
+        newText.cam = mainCamera.GetComponent<Camera>();
         return newText;
     }
 

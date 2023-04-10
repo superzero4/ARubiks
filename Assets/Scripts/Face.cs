@@ -36,6 +36,7 @@ public class Face : MonoBehaviour
             piece.Item2++;
             if (piece.Item2 > pieceCorrectTreshold)
             {
+                piece.Item1.SnapFeedback();
                 subPiecesToFlush.RemoveAt(i);
             }
             if (piece.Item1 != null && !AreaContainsPoint(piece.Item1.transform.position))

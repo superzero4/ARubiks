@@ -1,3 +1,4 @@
+using MoreMountains.Feedbacks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,12 @@ public class SubPiece : MonoBehaviour
 
     [SerializeField]
     private Renderer _renderer;
+    [SerializeField]
+    private MMF_Player _snapFeedback;
+    [SerializeField]
+    private MMF_Player _destroyFeedback;
     private Piece _mother;
+    [HideInInspector]
     public bool _isRegistered;
     public Color Color => _renderer.material.color;
 
@@ -22,11 +28,14 @@ public class SubPiece : MonoBehaviour
             DestroySubPiece();
         }
     }
-
+    public void SnapFeedback() => _snapFeedback.PlayFeedbacks();
     public void DestroySubPiece()
     {
         if (!_isRegistered)
-            Destroy(gameObject);
+        {
+            _destroyFeedback.Events.OnComplete.AddListener(() => Destroy(gameObject));
+            _destroyFeedback.PlayFeedbacks();
+        }
     }
 
     public void Parent(Piece mother)

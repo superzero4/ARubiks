@@ -8,6 +8,10 @@ public class DestroyArea : MonoBehaviour
     [SerializeField] private Renderer _renderer;
     [SerializeField] private Color defaultColor;
     [SerializeField, Range(0f, 4f)] private float _timeToChange;
+    [SerializeField, Header("Audio")]
+    private AudioSource _audioSource;
+    [SerializeField]
+    private AudioClip _destroyClip;
     private void Start()
     {
         SetColor(defaultColor);
@@ -17,6 +21,7 @@ public class DestroyArea : MonoBehaviour
         if (other.attachedRigidbody.TryGetComponent<Piece>(out Piece piece))
         {
             SetColor(piece.Color ?? defaultColor);
+            _audioSource.PlayOneShot(_destroyClip);
             piece.Destroy();
         }
     }

@@ -7,7 +7,8 @@ using System.Linq;
 public class GameManager : MonoBehaviour
 {
     private const int NbOfFaces = 6;
-    private const float OneSquareCompletionPercentValue = (1f / NbOfFaces) * PerfectPercentage;
+    private const int NbOfSquares = 9;
+    private const float OneSquareCompletionPercentValue = (1f / NbOfSquares) * PerfectPercentage;
     private const int PerfectPercentage = 100;
     [SerializeField] private bool _allowCubeUntracked = true;
     [SerializeField] private bool _permanentFollow = false;

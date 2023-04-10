@@ -18,6 +18,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Default Canvas Prefab Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 1926280506753864651, guid: dd88e50c89d53eb46abb5b1e73d9d025,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1926280506753864653, guid: dd88e50c89d53eb46abb5b1e73d9d025,
         type: 3}
       propertyPath: m_Pivot.x
@@ -31,7 +36,7 @@ PrefabInstance:
     - target: {fileID: 1926280506753864653, guid: dd88e50c89d53eb46abb5b1e73d9d025,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 1926280506753864653, guid: dd88e50c89d53eb46abb5b1e73d9d025,
         type: 3}
@@ -56,12 +61,12 @@ PrefabInstance:
     - target: {fileID: 1926280506753864653, guid: dd88e50c89d53eb46abb5b1e73d9d025,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 200
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 1926280506753864653, guid: dd88e50c89d53eb46abb5b1e73d9d025,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 200
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 1926280506753864653, guid: dd88e50c89d53eb46abb5b1e73d9d025,
         type: 3}
@@ -91,7 +96,7 @@ PrefabInstance:
     - target: {fileID: 1926280506753864653, guid: dd88e50c89d53eb46abb5b1e73d9d025,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.1908
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1926280506753864653, guid: dd88e50c89d53eb46abb5b1e73d9d025,
         type: 3}
@@ -116,12 +121,12 @@ PrefabInstance:
     - target: {fileID: 1926280506753864653, guid: dd88e50c89d53eb46abb5b1e73d9d025,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.008
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1926280506753864653, guid: dd88e50c89d53eb46abb5b1e73d9d025,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.0271
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1926280506753864653, guid: dd88e50c89d53eb46abb5b1e73d9d025,
         type: 3}
@@ -176,12 +181,12 @@ PrefabInstance:
     - target: {fileID: 1926280507840974047, guid: dd88e50c89d53eb46abb5b1e73d9d025,
         type: 3}
       propertyPath: m_text
-      value: 100
+      value: 'Full face : 100'
       objectReference: {fileID: 0}
     - target: {fileID: 1926280507840974047, guid: dd88e50c89d53eb46abb5b1e73d9d025,
         type: 3}
       propertyPath: m_fontSize
-      value: 119.4
+      value: 79.15
       objectReference: {fileID: 0}
     - target: {fileID: 1926280507840974047, guid: dd88e50c89d53eb46abb5b1e73d9d025,
         type: 3}
@@ -197,6 +202,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_enableAutoSizing
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926280507840974047, guid: dd88e50c89d53eb46abb5b1e73d9d025,
+        type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

@@ -58,10 +58,14 @@ public class GameManager : MonoBehaviour
         }
         CenterOnCube();
         completionPercents = new List<float>(Enumerable.Repeat(0f, NbOfFaces));
+        //To quick test
+        //_score.SpawnScore(this);
     }
 
     void Update()
     {
+        if (isEnded)
+            return;
         //Set the game manager on top of the cube
         if (virtualRubiksCube != null && CubeTracked && _permanentFollow)
         {

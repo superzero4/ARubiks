@@ -30,10 +30,11 @@ public class DynamicTextManager : MonoBehaviour
         return newText;
     }
 
-    public static FloatingAnimation CreateText(Vector3 position, string text, DynamicTextData data)
+    public static FloatingAnimation CreateText(Vector3 position, string text, DynamicTextData data, float scaleOverride = 1f)
     {
         var newText = Instantiate(canvasPrefab, position, Quaternion.identity);
         newText.transform.GetComponent<DynamicText>().Initialise(text, data);
+        newText.transform.localScale *= scaleOverride;
         newText.cam = mainCamera.GetComponent<Camera>();
         return newText;
     }
@@ -41,7 +42,7 @@ public class DynamicTextManager : MonoBehaviour
     public void SampleText()
     {
         canvasPrefab = _canvasPrefab;
-        mainCamera=_mainCamera;
+        mainCamera = _mainCamera;
         CreateText(FindObjectOfType<Face>().transform.position, "100", _defaultData);
     }
 

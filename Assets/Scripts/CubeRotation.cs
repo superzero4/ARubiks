@@ -10,10 +10,10 @@ public class CubeRotation : MonoBehaviour
 
     //Temporary script to test cube rotation
 
-    private void Start()
+    private void Awake()
     {
         gameManager = FindObjectOfType<GameManager>();
-        meshRenderers = transform.GetComponentsInChildren<MeshRenderer>();
+        meshRenderers = transform.GetComponentsInChildren<MeshRenderer>(true);
         foreach (MeshRenderer mesh in meshRenderers)
         {
             mesh.enabled = false;

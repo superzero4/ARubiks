@@ -46,22 +46,29 @@ public class ScoreManager : MonoBehaviour
         public string prefix;
         public DynamicTextData data;
         public AudioClip sfx;
+        [Range(.1f,10f)]
+        public float scaleOverride;
         public override string ToString()
         {
             return prefix + "" + score.ToString();
         }
     }
     public void SpawnScore(SubPiece origin) => SpawnScore(origin.transform.position, _scoreForCorrect);
-    public void SpawnScore(Face origin) => SpawnScore(origin.transform.position + origin.transform.up * .25f, _bonusForPerfectFace);
+    public void SpawnScore(Face origin)
+    {
+        //For some reason the faces "up" is thei right, so we use right to spawn the text a tiny bit offseted from centered face
+        SpawnScore(origin.transform.position + origin.transform.up * .025f, _bonusForPerfectFace);
+    }
+
     public void SpawnScore(GameManager origin)
     {
         var tr = origin.VirtualRubiksCube.transform;
-        SpawnScore(tr.position + Vector3.up * 1f, _bonusForPerfectCube);
+        SpawnScore(tr.position + Vector3.up * .025f, _bonusForPerfectCube);
     }
 
     private void SpawnScore(Vector3 origin, Possibilites _case)
     {
-        var text = DynamicTextManager.CreateText(origin, _case.ToString(), _case.data);
+        var text = DynamicTextManager.CreateText(origin, _case.ToString(), _case.data,_case.scaleOverride);
         if (_case.sfx != null)
             _audioSource.PlayOneShot(_case.sfx);
         //Debug.Break();

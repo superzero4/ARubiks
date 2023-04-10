@@ -26,6 +26,13 @@ public class Face : MonoBehaviour
     {
         _gameManager = FindObjectOfType<GameManager>();
         _scoreManager = _gameManager.Score;
+        
+    }
+    private void Start()
+    {
+        //Quick testing
+        //FindObjectOfType<ScoreManager>().SpawnScore(this);
+        //Debug.Break();
     }
     private void FixedUpdate()
     {

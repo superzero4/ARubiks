@@ -11,6 +11,10 @@ public class Pause : MonoBehaviour
     [SerializeField] CubeRotation cubeRotation;
     [SerializeField]
     private DestroyArea _destroyArea;
+    [SerializeField]
+    private AudioSource _audioSource;
+    [SerializeField]
+    private AudioClip _start, _pause, _unpause;
 
     // Start is called before the first frame update
     void Awake()
@@ -34,6 +38,7 @@ public class Pause : MonoBehaviour
 
     void StartGame()
     {
+        _audioSource.PlayOneShot(_start);
         Debug.Log("Start game");
         cubeRotation.ActivateMesh();
         isStarted = true;
@@ -46,6 +51,7 @@ public class Pause : MonoBehaviour
     void UnpauseGame()
     {
         gameManager.CubeTracked = true;
+        _audioSource.PlayOneShot(_unpause);
         if (!gameManager.isEnded)
         {
             Debug.Log("Unpause game");
@@ -62,6 +68,7 @@ public class Pause : MonoBehaviour
     void PauseGame()
     {
         gameManager.CubeTracked = false;
+        _audioSource.PlayOneShot(_pause);
         if (!gameManager.isEnded)
         {
             Debug.Log("Pause game");

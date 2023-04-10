@@ -9,6 +9,7 @@ public class ScoreManager : MonoBehaviour
 {
     [SerializeField]
     private DynamicTextManager _textSpawner;
+    [SerializeField] private AudioSource _audioSource;
     [Header("Displayers")]
     [SerializeField]
     private Text _scoreText;
@@ -44,6 +45,7 @@ public class ScoreManager : MonoBehaviour
         public int score;
         public string prefix;
         public DynamicTextData data;
+        public AudioClip sfx;
         public override string ToString()
         {
             return prefix + "" + score.ToString();
@@ -60,6 +62,8 @@ public class ScoreManager : MonoBehaviour
     private void SpawnScore(Vector3 origin, Possibilites _case)
     {
         var text = DynamicTextManager.CreateText(origin, _case.ToString(), _case.data);
+        if (_case.sfx != null)
+            _audioSource.PlayOneShot(_case.sfx);
         //Debug.Break();
         text.StartAnimation(() => UpdateScore(_case.score));
     }

@@ -6,7 +6,8 @@ public class MaterialPicker : MonoBehaviour
     /// <summary>
     /// Last value is probability of black to be spawned
     /// </summary>
-    float[] colorProbability = { .16f, .16f, .16f, .16f, .16f, .16f, .04f };
+    //float[] colorProbability = { .16f, .16f, .16f, .16f, .16f, .16f, .04f };
+    float[] colorProbability = { 0, 1f, 0, 0, 0, 0, 0 };
     public Material RandomMat => pieceMaterialColor[PickOne()];
     //Choose randomly a color for a piece using their probability
     private int PickOne()

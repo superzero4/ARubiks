@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private MaterialPicker _material;
     [SerializeField]
     private GameObject lightbeam;
-
     [SerializeField] PieceSpawner[] pieceSpawners;
     [SerializeField] float spawnTime = 5f;
     [SerializeField, Range(.01f, .7f)] float _speed = .3f;
@@ -24,6 +23,10 @@ public class GameManager : MonoBehaviour
     public bool isEnded = false;
     [SerializeField] GameObject virtualRubiksCube;
     [SerializeField] ScoreManager _score;
+    [SerializeField, Header("Audio")]
+    private AudioSource _audioSource;
+    [SerializeField]
+    private AudioClip _spawnClip;
     private bool _cubeTracked;
     public bool CubeTracked
     {
@@ -152,7 +155,9 @@ public class GameManager : MonoBehaviour
     public Piece SpawnPiece(NMinos.NMino piece, PieceSpawner spawner = null)
     {
         spawner ??= RandomSpawner();
+        _audioSource.PlayOneShot(_spawnClip);
         return spawner.SpawnPiece(_piecePrefab, _material.RandomMat, piece, Quaternion.identity);
+
     }
     public void UpdatePercentage(int id)
     {

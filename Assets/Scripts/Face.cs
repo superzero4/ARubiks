@@ -58,7 +58,7 @@ public class Face : MonoBehaviour
         //Debug.Log(gameObject.name + " face--Registering " + subPiece.name + " on " + additionnalInfo);
         //Debug.Break();
         subPiece._isRegistered = true;
-        if (IsColorMatchFace(color))
+        if (true || IsColorMatchFace(color))
         {
             _gameManager.UpdatePercentage(faceId);
             _scoreManager.SpawnScore(subPiece);

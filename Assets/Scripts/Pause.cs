@@ -9,11 +9,14 @@ public class Pause : MonoBehaviour
     bool isStarted = false;
     GameManager gameManager;
     [SerializeField] CubeRotation cubeRotation;
+    [SerializeField]
+    private DestroyArea _destroyArea;
 
     // Start is called before the first frame update
     void Awake()
     {
         gameManager = FindObjectOfType<GameManager>();
+        _destroyArea.gameObject.SetActive(false);
 
         defaultObserver.OnTargetFound.AddListener(delegate
         {
@@ -36,6 +39,7 @@ public class Pause : MonoBehaviour
         isStarted = true;
         gameManager.CubeTracked = true;
         gameManager.CenterOnCube();
+        _destroyArea.gameObject.SetActive(true);
         StartCoroutine(gameManager.RandomSpawnPiece());
     }
 

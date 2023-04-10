@@ -20,11 +20,11 @@ public class MaterialPicker : MonoBehaviour
             index++;
         }
         index--;
-/*
-        //If we want to always select a "non black" color
-        if (index == colorProbability.Length - 1)
-            index = Random.Range(0, pieceMaterialColor.Length);
-*/
+        /*
+                //If we want to always select a "non black" color
+                if (index == colorProbability.Length - 1)
+                    index = Random.Range(0, pieceMaterialColor.Length);
+        */
         return index;
     }
 

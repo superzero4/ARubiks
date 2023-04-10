@@ -181,12 +181,12 @@ PrefabInstance:
     - target: {fileID: 1926280507840974047, guid: dd88e50c89d53eb46abb5b1e73d9d025,
         type: 3}
       propertyPath: m_text
-      value: 'Full face : 100'
+      value: 'Perfect face : +100'
       objectReference: {fileID: 0}
     - target: {fileID: 1926280507840974047, guid: dd88e50c89d53eb46abb5b1e73d9d025,
         type: 3}
       propertyPath: m_fontSize
-      value: 79.15
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 1926280507840974047, guid: dd88e50c89d53eb46abb5b1e73d9d025,
         type: 3}
@@ -200,8 +200,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1926280507840974047, guid: dd88e50c89d53eb46abb5b1e73d9d025,
         type: 3}
+      propertyPath: m_fontSizeBase
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926280507840974047, guid: dd88e50c89d53eb46abb5b1e73d9d025,
+        type: 3}
       propertyPath: m_enableAutoSizing
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1926280507840974047, guid: dd88e50c89d53eb46abb5b1e73d9d025,
         type: 3}

@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,8 @@ public class PieceSpawner : MonoBehaviour
     static readonly Vector3 MinoScale = new Vector3(.018f, .018f, .018f);
     [HideInInspector]
     public GameObject lightBeam;
+    [SerializeField, InfoBox("Empty piece, that'll be holding logic and subpieces as visuals")]
+    private Piece _piecePrefab;
 
     int isActive = 0;
     /*//Spawn the piece and set her color
@@ -21,16 +24,15 @@ public class PieceSpawner : MonoBehaviour
     }
     public Piece SpawnPiece(SubPiece prefab, Material mat, NMinos.NMino nmino, Quaternion rotation)
     {
-        var parent = new GameObject("Piece").transform;
-        var piece = parent.gameObject.AddComponent<Piece>();
-        piece.PreparePiece((nmino.structure.GetLength(0), nmino.structure.GetLength(1)), prefab.gameObject.layer);
-        parent.position = transform.position;
-        parent.rotation = rotation;
+        var piece = Instantiate(_piecePrefab);
+        piece.PreparePiece((nmino.structure.GetLength(0), nmino.structure.GetLength(1)));
+        piece.transform.position = transform.position;
+        piece.transform.rotation = rotation;
         foreach (var ind in nmino)
         {
             if (nmino[ind])
             {
-                var couple = SpawnPiece(prefab, mat, new Vector3(ind.Item1 * .018f - .018f, 0, ind.Item2 * .018f - .018f), parent.transform);
+                var couple = SpawnPiece(prefab, mat, new Vector3(ind.Item1 * .018f - .018f, 0, ind.Item2 * .018f - .018f), piece.transform);
                 couple.instantiated.name = "subPiece" + ind;
                 piece[ind] = couple.instantiated;
             }

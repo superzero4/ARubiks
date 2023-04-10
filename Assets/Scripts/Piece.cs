@@ -18,13 +18,9 @@ public class Piece : MonoBehaviour
     public bool isPaused = false;
     public float Speed { get => speed; set => speed = value; }
     private static int pieceCount = 0;
-    public void PreparePiece((int, int) sizeOfSubpieces, int layer)
+    public void PreparePiece((int, int) sizeOfSubpieces)
     {
         _subPieces = new Matrix<SubPiece>(sizeOfSubpieces.Item1, sizeOfSubpieces.Item2);
-        var rb = gameObject.AddComponent<Rigidbody>();
-        rb.isKinematic = true;
-        rb.useGravity = false;
-        gameObject.layer = layer;
         gameObject.name = "Piece " + ++pieceCount;
     }
     private void Update()

@@ -35,6 +35,7 @@ public class Pause : MonoBehaviour
         cubeRotation.ActivateMesh();
         isStarted = true;
         gameManager.CubeTracked = true;
+        gameManager.CenterOnCube();
         StartCoroutine(gameManager.RandomSpawnPiece());
     }
 

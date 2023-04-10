@@ -11,7 +11,7 @@ public class PieceSpawner : MonoBehaviour
     [SerializeField, InfoBox("Empty piece, that'll be holding logic and subpieces as visuals")]
     private Piece _piecePrefab;
 
-    int isActive = 0;
+    static int isActive = 0;
     /*//Spawn the piece and set her color
     public void SpawnPiece(Piece p)
     {

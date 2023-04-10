@@ -55,7 +55,6 @@ public class Face : MonoBehaviour
             return false;
         Color color = subPiece.Color;
         placedColors[squareIndex] = color;
-        isFull = IsFaceFull();
         //Debug.Log(gameObject.name + " face--Registering " + subPiece.name + " on " + additionnalInfo);
         //Debug.Break();
         subPiece._isRegistered = true;
@@ -64,6 +63,7 @@ public class Face : MonoBehaviour
             _gameManager.UpdatePercentage(faceId);
             _scoreManager.SpawnScore(subPiece);
         }
+        isFull = IsFaceFull();
         return true;
     }
     internal bool AreaContainsPoint(Vector3 position) => _area.bounds.Contains(position);
@@ -78,7 +78,6 @@ public class Face : MonoBehaviour
         }
         if (_gameManager.CompleteFace(faceId))
             _scoreManager.SpawnScore(this);
-        //Debug.Log(string.Join(',', placedColors) + " Face : " + gameObject.name + " is full");
         if (GetComponentsInChildren<SubPiece>().Length != 9)
             Debug.LogError(GetComponentsInChildren<SubPiece>().Length + " subpieces under face " + gameObject.name + " probably due to one on edge that will be suppressed soon");
         return true;

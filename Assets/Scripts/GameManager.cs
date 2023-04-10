@@ -116,6 +116,7 @@ public class GameManager : MonoBehaviour
     //Spawn piece on a random spawner
     public IEnumerator RandomSpawnPiece()
     {
+        yield return new WaitForSeconds(1f);
         while (true)
         {
             if (CubeTracked)
@@ -170,7 +171,7 @@ public class GameManager : MonoBehaviour
     {
         _nbOfFacesCompleted++;
         _material.RedistributeProbability(faceId);
-        bool isPerfect = completionPercents[faceId] >= 100f;
+        bool isPerfect = completionPercents[faceId] >= PerfectPercentage;
         return isPerfect;
     }
 }

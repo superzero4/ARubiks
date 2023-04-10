@@ -46,7 +46,7 @@ public class PieceSpawner : MonoBehaviour
         if (parent == null || !parent.TryGetComponent<Piece>(out Piece piece))
             piece = parent.gameObject.AddComponent<Piece>();
         var subPiece = Instantiate(p, transform.position + offset, Quaternion.identity, parent);
-        subPiece.GetComponent<MeshRenderer>().material = mat;
+        subPiece.Renderer.material = mat;
         subPiece.Parent(piece);
         subPiece.transform.localScale = MinoScale;
         StartCoroutine(ActivateLightBeam(piece));

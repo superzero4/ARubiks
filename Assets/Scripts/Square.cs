@@ -25,7 +25,10 @@ public class Square : MonoBehaviour
             if (face.AreaContainsPoint(subPiece.transform.position))
             {
                 if (!subPiece.isFalling)
+                {
+                    subPiece.SnapFeedback();
                     _isOccupied = face.UpdateFaceColor(index, subPiece, subPiece.Mother.name + "piece--square" + gameObject.name);
+                }
             }
             else
                 subPiece.DestroySubPiece();

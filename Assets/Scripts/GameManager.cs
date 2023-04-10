@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private MaterialPicker _material;
     [SerializeField]
     private GameObject lightbeam;
+
     [SerializeField] PieceSpawner[] pieceSpawners;
     [SerializeField] float spawnTime = 5f;
     [SerializeField, Range(.01f, .7f)] float _speed = .3f;
@@ -39,7 +40,7 @@ public class GameManager : MonoBehaviour
 #else
 
 #endif
-        foreach(var spawn in pieceSpawners)
+        foreach (var spawn in pieceSpawners)
         {
             spawn.lightBeam = lightbeam;
         }
@@ -52,7 +53,7 @@ public class GameManager : MonoBehaviour
             FindObjectOfType<DefaultObserverEventHandler>().OnTargetFound?.Invoke();
         }
         CenterOnCube();
-        completionPercents =new List<float>(Enumerable.Repeat(0f, NbOfFaces));    
+        completionPercents = new List<float>(Enumerable.Repeat(0f, NbOfFaces));
     }
 
     void Update()

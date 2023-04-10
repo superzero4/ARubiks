@@ -43,12 +43,13 @@ public class GameManager : MonoBehaviour
         {
             spawn.lightBeam = lightbeam;
         }
+        lightbeam.SetActive(false);
     }
     void Start()
     {
         if (_allowCubeUntracked)
         {
-            FindObjectOfType<DefaultObserverEventHandler>().OnTargetFound.Invoke();
+            FindObjectOfType<DefaultObserverEventHandler>().OnTargetFound?.Invoke();
         }
         CenterOnCube();
         completionPercents =new List<float>(Enumerable.Repeat(0f, NbOfFaces));    
